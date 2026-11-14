@@ -1,0 +1,120 @@
+{
+  "id": "lightning",
+  "title": "Lightning",
+  "side": "Weather",
+  "year": "ISS, 2017\u20142023",
+  "blurb": "Six years of flashes seen from the space station. Every strike is a transient, so the piece is percussion first.",
+  "instrument": "kick, snaps, metallic noise, stabs",
+  "source": {
+    "title": "Lightning",
+    "agency": "NASA Scientific Visualization Studio (EIC Content Database)",
+    "url": "https://svs.gsfc.nasa.gov/5011/",
+    "credit": "NASA's Scientific Visualization Studio",
+    "roles": [],
+    "datasets": [
+      "Lightning Imaging Sensor (LIS) on International Space Station (ISS) Science Data V1) [Lightning Imaging Sensor (LIS)]",
+      "See all pages that use this dataset MCD12C1 (Land Cover Climate Modeling Grid (CMG)) [MODIS]",
+      "sensor: Lightning Imaging Sensor",
+      "sensor: MODIS"
+    ],
+    "video": {
+      "duration": 216.7,
+      "width": 1920,
+      "height": 1080,
+      "mb": 133.2
+    }
+  },
+  "cover": "records/lightning/cover.jpg",
+  "frames": [
+    {
+      "src": "records/lightning/f001.jpg",
+      "t": 13.0,
+      "n": 1
+    },
+    {
+      "src": "records/lightning/f002.jpg",
+      "t": 24.22,
+      "n": 2
+    },
+    {
+      "src": "records/lightning/f003.jpg",
+      "t": 35.44,
+      "n": 3
+    },
+    {
+      "src": "records/lightning/f004.jpg",
+      "t": 46.65,
+      "n": 4
+    },
+    {
+      "src": "records/lightning/f005.jpg",
+      "t": 57.87,
+      "n": 5
+    },
+    {
+      "src": "records/lightning/f006.jpg",
+      "t": 69.09,
+      "n": 6
+    },
+    {
+      "src": "records/lightning/f007.jpg",
+      "t": 80.31,
+      "n": 7
+    },
+    {
+      "src": "records/lightning/f008.jpg",
+      "t": 91.52,
+      "n": 8
+    },
+    {
+      "src": "records/lightning/f009.jpg",
+      "t": 102.74,
+      "n": 9
+    },
+    {
+      "src": "records/lightning/f010.jpg",
+      "t": 113.96,
+      "n": 10
+    },
+    {
+      "src": "records/lightning/f011.jpg",
+      "t": 125.18,
+      "n": 11
+    },
+    {
+      "src": "records/lightning/f012.jpg",
+      "t": 136.39,
+      "n": 12
+    },
+    {
+      "src": "records/lightning/f013.jpg",
+      "t": 147.61,
+      "n": 13
+    },
+    {
+      "src": "records/lightning/f014.jpg",
+      "t": 158.83,
+      "n": 14
+    },
+    {
+      "src": "records/lightning/f015.jpg",
+      "t": 170.05,
+      "n": 15
+    },
+    {
+      "src": "records/lightning/f016.jpg",
+      "t": 181.26,
+      "n": 16
+    },
+    {
+      "src": "records/lightning/f017.jpg",
+      "t": 192.48,
+      "n": 17
+    },
+    {
+      "src": "records/lightning/f018.jpg",
+      "t": 203.7,
+      "n": 18
+    }
+  ]
+}

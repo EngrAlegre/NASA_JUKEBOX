@@ -1,0 +1,656 @@
+{
+  "generated": true,
+  "records": [
+    {
+      "id": "nightlights",
+      "title": "City Lights",
+      "side": "Human Footprint",
+      "year": "2012\u20142023",
+      "blurb": "Eleven years of electric light, compressed into one side. Where we build, the map learns to sing.",
+      "instrument": "glass bells, sub bass, brushed hats",
+      "source": {
+        "title": "City Lights",
+        "agency": "NASA Scientific Visualization Studio (EIC Content Database)",
+        "url": "https://svs.gsfc.nasa.gov/5313/",
+        "credit": "NASA's Scientific Visualization Studio",
+        "roles": [
+          {
+            "role": "Visualizer",
+            "names": [
+              "Kel Elkins"
+            ]
+          },
+          {
+            "role": "Scientists",
+            "names": [
+              "Zhuosen Wang",
+              "Miguel Rom\u00e1n",
+              "Ranjay Shrestha",
+              "Srija Chakraborty",
+              "Virginia Kalb"
+            ]
+          }
+        ],
+        "datasets": [
+          "Datasets used Black Marble (Black Marble: Next Generation) [Suomi NPP: VIIRS]",
+          "sensor: VIIRS Collected by"
+        ],
+        "video": {
+          "duration": 43.33,
+          "width": 7680,
+          "height": 2160,
+          "mb": 34.3
+        }
+      },
+      "cover": "records/nightlights/cover.jpg",
+      "frames": [
+        {
+          "src": "records/nightlights/f001.jpg",
+          "t": 2.6,
+          "n": 1
+        },
+        {
+          "src": "records/nightlights/f002.jpg",
+          "t": 4.84,
+          "n": 2
+        },
+        {
+          "src": "records/nightlights/f003.jpg",
+          "t": 7.09,
+          "n": 3
+        },
+        {
+          "src": "records/nightlights/f004.jpg",
+          "t": 9.33,
+          "n": 4
+        },
+        {
+          "src": "records/nightlights/f005.jpg",
+          "t": 11.57,
+          "n": 5
+        },
+        {
+          "src": "records/nightlights/f006.jpg",
+          "t": 13.82,
+          "n": 6
+        },
+        {
+          "src": "records/nightlights/f007.jpg",
+          "t": 16.06,
+          "n": 7
+        },
+        {
+          "src": "records/nightlights/f008.jpg",
+          "t": 18.3,
+          "n": 8
+        },
+        {
+          "src": "records/nightlights/f009.jpg",
+          "t": 20.55,
+          "n": 9
+        },
+        {
+          "src": "records/nightlights/f010.jpg",
+          "t": 22.79,
+          "n": 10
+        },
+        {
+          "src": "records/nightlights/f011.jpg",
+          "t": 25.03,
+          "n": 11
+        },
+        {
+          "src": "records/nightlights/f012.jpg",
+          "t": 27.27,
+          "n": 12
+        },
+        {
+          "src": "records/nightlights/f013.jpg",
+          "t": 29.52,
+          "n": 13
+        },
+        {
+          "src": "records/nightlights/f014.jpg",
+          "t": 31.76,
+          "n": 14
+        },
+        {
+          "src": "records/nightlights/f015.jpg",
+          "t": 34.0,
+          "n": 15
+        },
+        {
+          "src": "records/nightlights/f016.jpg",
+          "t": 36.25,
+          "n": 16
+        },
+        {
+          "src": "records/nightlights/f017.jpg",
+          "t": 38.49,
+          "n": 17
+        },
+        {
+          "src": "records/nightlights/f018.jpg",
+          "t": 40.73,
+          "n": 18
+        }
+      ]
+    },
+    {
+      "id": "co2",
+      "title": "Carbon Weather",
+      "side": "Atmosphere",
+      "year": "DYAMOND model \u00b7 simulated January 2020",
+      "blurb": "A model atmosphere breathing carbon dioxide over one simulated day. The point cloud thickens and the chord darkens with it.",
+      "instrument": "reed organ, low strings, tape hiss",
+      "source": {
+        "title": "Carbon Weather",
+        "agency": "NASA Scientific Visualization Studio (EIC Content Database)",
+        "url": "https://svs.gsfc.nasa.gov/5196/",
+        "credit": "NASA's Scientific Visualization Studio",
+        "roles": [
+          {
+            "role": "Technical support",
+            "names": [
+              "Laurence Schuler",
+              "Ian Jones"
+            ]
+          },
+          {
+            "role": "Scientists",
+            "names": [
+              "Lesley Ott",
+              "Brad Weir",
+              "William Putman",
+              "Tomohiro Oda"
+            ]
+          }
+        ],
+        "datasets": [],
+        "video": {
+          "duration": 39.2,
+          "width": 1920,
+          "height": 1080,
+          "mb": 7.2
+        }
+      },
+      "cover": "records/co2/cover.jpg",
+      "frames": [
+        {
+          "src": "records/co2/f001.jpg",
+          "t": 2.35,
+          "n": 1
+        },
+        {
+          "src": "records/co2/f002.jpg",
+          "t": 4.38,
+          "n": 2
+        },
+        {
+          "src": "records/co2/f003.jpg",
+          "t": 6.41,
+          "n": 3
+        },
+        {
+          "src": "records/co2/f004.jpg",
+          "t": 8.44,
+          "n": 4
+        },
+        {
+          "src": "records/co2/f005.jpg",
+          "t": 10.47,
+          "n": 5
+        },
+        {
+          "src": "records/co2/f006.jpg",
+          "t": 12.5,
+          "n": 6
+        },
+        {
+          "src": "records/co2/f007.jpg",
+          "t": 14.53,
+          "n": 7
+        },
+        {
+          "src": "records/co2/f008.jpg",
+          "t": 16.56,
+          "n": 8
+        },
+        {
+          "src": "records/co2/f009.jpg",
+          "t": 18.59,
+          "n": 9
+        },
+        {
+          "src": "records/co2/f010.jpg",
+          "t": 20.61,
+          "n": 10
+        },
+        {
+          "src": "records/co2/f011.jpg",
+          "t": 22.64,
+          "n": 11
+        },
+        {
+          "src": "records/co2/f012.jpg",
+          "t": 24.67,
+          "n": 12
+        },
+        {
+          "src": "records/co2/f013.jpg",
+          "t": 26.7,
+          "n": 13
+        },
+        {
+          "src": "records/co2/f014.jpg",
+          "t": 28.73,
+          "n": 14
+        },
+        {
+          "src": "records/co2/f015.jpg",
+          "t": 30.76,
+          "n": 15
+        },
+        {
+          "src": "records/co2/f016.jpg",
+          "t": 32.79,
+          "n": 16
+        },
+        {
+          "src": "records/co2/f017.jpg",
+          "t": 34.82,
+          "n": 17
+        },
+        {
+          "src": "records/co2/f018.jpg",
+          "t": 36.85,
+          "n": 18
+        }
+      ]
+    },
+    {
+      "id": "canopy",
+      "title": "Canopy",
+      "side": "Biosphere",
+      "year": "GEDI, 2019\u20142021",
+      "blurb": "Forest height from a laser in orbit. Tall canopy rings out as bright, wide-open harmony.",
+      "instrument": "marimba, airy pad, soft mallets",
+      "source": {
+        "title": "Canopy",
+        "agency": "NASA Scientific Visualization Studio (EIC Content Database)",
+        "url": "https://svs.gsfc.nasa.gov/4950/",
+        "credit": "NASA's Scientific Visualization Studio",
+        "roles": [
+          {
+            "role": "Technical support",
+            "names": [
+              "Laurence Schuler",
+              "Ian Jones"
+            ]
+          },
+          {
+            "role": "Scientists",
+            "names": [
+              "Temilola Fatoyinbo",
+              "Atticus Stovall"
+            ]
+          }
+        ],
+        "datasets": [
+          "Datasets used Relative Height [GEDI]"
+        ],
+        "video": {
+          "duration": 51.48,
+          "width": 1920,
+          "height": 1080,
+          "mb": 18.6
+        }
+      },
+      "cover": "records/canopy/cover.jpg",
+      "frames": [
+        {
+          "src": "records/canopy/f001.jpg",
+          "t": 3.09,
+          "n": 1
+        },
+        {
+          "src": "records/canopy/f002.jpg",
+          "t": 5.75,
+          "n": 2
+        },
+        {
+          "src": "records/canopy/f003.jpg",
+          "t": 8.42,
+          "n": 3
+        },
+        {
+          "src": "records/canopy/f004.jpg",
+          "t": 11.08,
+          "n": 4
+        },
+        {
+          "src": "records/canopy/f005.jpg",
+          "t": 13.75,
+          "n": 5
+        },
+        {
+          "src": "records/canopy/f006.jpg",
+          "t": 16.41,
+          "n": 6
+        },
+        {
+          "src": "records/canopy/f007.jpg",
+          "t": 19.08,
+          "n": 7
+        },
+        {
+          "src": "records/canopy/f008.jpg",
+          "t": 21.74,
+          "n": 8
+        },
+        {
+          "src": "records/canopy/f009.jpg",
+          "t": 24.41,
+          "n": 9
+        },
+        {
+          "src": "records/canopy/f010.jpg",
+          "t": 27.07,
+          "n": 10
+        },
+        {
+          "src": "records/canopy/f011.jpg",
+          "t": 29.74,
+          "n": 11
+        },
+        {
+          "src": "records/canopy/f012.jpg",
+          "t": 32.4,
+          "n": 12
+        },
+        {
+          "src": "records/canopy/f013.jpg",
+          "t": 35.07,
+          "n": 13
+        },
+        {
+          "src": "records/canopy/f014.jpg",
+          "t": 37.73,
+          "n": 14
+        },
+        {
+          "src": "records/canopy/f015.jpg",
+          "t": 40.4,
+          "n": 15
+        },
+        {
+          "src": "records/canopy/f016.jpg",
+          "t": 43.06,
+          "n": 16
+        },
+        {
+          "src": "records/canopy/f017.jpg",
+          "t": 45.73,
+          "n": 17
+        },
+        {
+          "src": "records/canopy/f018.jpg",
+          "t": 48.39,
+          "n": 18
+        }
+      ]
+    },
+    {
+      "id": "lightning",
+      "title": "Lightning",
+      "side": "Weather",
+      "year": "ISS, 2017\u20142023",
+      "blurb": "Six years of flashes seen from the space station. Every strike is a transient, so the piece is percussion first.",
+      "instrument": "kick, snaps, metallic noise, stabs",
+      "source": {
+        "title": "Lightning",
+        "agency": "NASA Scientific Visualization Studio (EIC Content Database)",
+        "url": "https://svs.gsfc.nasa.gov/5011/",
+        "credit": "NASA's Scientific Visualization Studio",
+        "roles": [],
+        "datasets": [
+          "Lightning Imaging Sensor (LIS) on International Space Station (ISS) Science Data V1) [Lightning Imaging Sensor (LIS)]",
+          "See all pages that use this dataset MCD12C1 (Land Cover Climate Modeling Grid (CMG)) [MODIS]",
+          "sensor: Lightning Imaging Sensor",
+          "sensor: MODIS"
+        ],
+        "video": {
+          "duration": 216.7,
+          "width": 1920,
+          "height": 1080,
+          "mb": 133.2
+        }
+      },
+      "cover": "records/lightning/cover.jpg",
+      "frames": [
+        {
+          "src": "records/lightning/f001.jpg",
+          "t": 13.0,
+          "n": 1
+        },
+        {
+          "src": "records/lightning/f002.jpg",
+          "t": 24.22,
+          "n": 2
+        },
+        {
+          "src": "records/lightning/f003.jpg",
+          "t": 35.44,
+          "n": 3
+        },
+        {
+          "src": "records/lightning/f004.jpg",
+          "t": 46.65,
+          "n": 4
+        },
+        {
+          "src": "records/lightning/f005.jpg",
+          "t": 57.87,
+          "n": 5
+        },
+        {
+          "src": "records/lightning/f006.jpg",
+          "t": 69.09,
+          "n": 6
+        },
+        {
+          "src": "records/lightning/f007.jpg",
+          "t": 80.31,
+          "n": 7
+        },
+        {
+          "src": "records/lightning/f008.jpg",
+          "t": 91.52,
+          "n": 8
+        },
+        {
+          "src": "records/lightning/f009.jpg",
+          "t": 102.74,
+          "n": 9
+        },
+        {
+          "src": "records/lightning/f010.jpg",
+          "t": 113.96,
+          "n": 10
+        },
+        {
+          "src": "records/lightning/f011.jpg",
+          "t": 125.18,
+          "n": 11
+        },
+        {
+          "src": "records/lightning/f012.jpg",
+          "t": 136.39,
+          "n": 12
+        },
+        {
+          "src": "records/lightning/f013.jpg",
+          "t": 147.61,
+          "n": 13
+        },
+        {
+          "src": "records/lightning/f014.jpg",
+          "t": 158.83,
+          "n": 14
+        },
+        {
+          "src": "records/lightning/f015.jpg",
+          "t": 170.05,
+          "n": 15
+        },
+        {
+          "src": "records/lightning/f016.jpg",
+          "t": 181.26,
+          "n": 16
+        },
+        {
+          "src": "records/lightning/f017.jpg",
+          "t": 192.48,
+          "n": 17
+        },
+        {
+          "src": "records/lightning/f018.jpg",
+          "t": 203.7,
+          "n": 18
+        }
+      ]
+    },
+    {
+      "id": "ocean",
+      "title": "Ocean Heat",
+      "side": "Ocean",
+      "year": "daily \u00b7 last 18 days",
+      "blurb": "Eighteen mornings of sea surface temperature. Cold water answers low, warm water climbs the scale.",
+      "instrument": "bowed bass, water-drop plucks, soft pulse",
+      "source": {
+        "title": "GHRSST_L4_MUR_Sea_Surface_Temperature (NASA GIBS)",
+        "agency": "NASA Global Imagery Browse Services (GIBS)",
+        "url": "https://gibs.earthdata.nasa.gov/",
+        "credit": "NASA EOSDIS GIBS \u00b7 GHRSST MUR sea surface temperature",
+        "roles": [],
+        "datasets": [
+          "GHRSST_L4_MUR_Sea_Surface_Temperature"
+        ],
+        "video": null,
+        "live": true,
+        "built": "2026-11-15"
+      },
+      "cover": "records/ocean/cover.png",
+      "frames": [
+        {
+          "src": "records/ocean/f001.png",
+          "t": 0,
+          "n": 1,
+          "label": "2026-10-25"
+        },
+        {
+          "src": "records/ocean/f002.png",
+          "t": 1,
+          "n": 2,
+          "label": "2026-10-26"
+        },
+        {
+          "src": "records/ocean/f003.png",
+          "t": 2,
+          "n": 3,
+          "label": "2026-10-27"
+        },
+        {
+          "src": "records/ocean/f004.png",
+          "t": 3,
+          "n": 4,
+          "label": "2026-10-28"
+        },
+        {
+          "src": "records/ocean/f005.png",
+          "t": 4,
+          "n": 5,
+          "label": "2026-10-29"
+        },
+        {
+          "src": "records/ocean/f006.png",
+          "t": 5,
+          "n": 6,
+          "label": "2026-10-30"
+        },
+        {
+          "src": "records/ocean/f007.png",
+          "t": 6,
+          "n": 7,
+          "label": "2026-10-31"
+        },
+        {
+          "src": "records/ocean/f008.png",
+          "t": 7,
+          "n": 8,
+          "label": "2026-11-01"
+        },
+        {
+          "src": "records/ocean/f009.png",
+          "t": 8,
+          "n": 9,
+          "label": "2026-11-02"
+        },
+        {
+          "src": "records/ocean/f010.png",
+          "t": 9,
+          "n": 10,
+          "label": "2026-11-03"
+        },
+        {
+          "src": "records/ocean/f011.png",
+          "t": 10,
+          "n": 11,
+          "label": "2026-11-04"
+        },
+        {
+          "src": "records/ocean/f012.png",
+          "t": 11,
+          "n": 12,
+          "label": "2026-11-05"
+        },
+        {
+          "src": "records/ocean/f013.png",
+          "t": 12,
+          "n": 13,
+          "label": "2026-11-06"
+        },
+        {
+          "src": "records/ocean/f014.png",
+          "t": 13,
+          "n": 14,
+          "label": "2026-11-07"
+        },
+        {
+          "src": "records/ocean/f015.png",
+          "t": 14,
+          "n": 15,
+          "label": "2026-11-08"
+        },
+        {
+          "src": "records/ocean/f016.png",
+          "t": 15,
+          "n": 16,
+          "label": "2026-11-09"
+        },
+        {
+          "src": "records/ocean/f017.png",
+          "t": 16,
+          "n": 17,
+          "label": "2026-11-10"
+        },
+        {
+          "src": "records/ocean/f018.png",
+          "t": 17,
+          "n": 18,
+          "label": "2026-11-11"
+        }
+      ]
+    }
+  ]
+}

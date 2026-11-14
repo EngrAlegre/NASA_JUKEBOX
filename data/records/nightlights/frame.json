@@ -1,0 +1,118 @@
+{
+  "id": "nightlights",
+  "title": "City Lights",
+  "side": "Human Footprint",
+  "year": "2012\u20142023",
+  "blurb": "Eleven years of electric light, compressed into one side. Where we build, the map learns to sing.",
+  "instrument": "glass bells, sub bass, brushed hats",
+  "source": {
+    "title": "City Lights",
+    "agency": "NASA Scientific Visualization Studio (EIC Content Database)",
+    "url": "https://svs.gsfc.nasa.gov/5313/",
+    "credit": "NASA's Scientific Visualization Studio",
+    "roles": [],
+    "datasets": [
+      "Datasets used Black Marble (Black Marble: Next Generation) [Suomi NPP: VIIRS]",
+      "sensor: VIIRS Collected by"
+    ],
+    "video": {
+      "duration": 43.33,
+      "width": 7680,
+      "height": 2160,
+      "mb": 34.3
+    }
+  },
+  "cover": "records/nightlights/cover.jpg",
+  "frames": [
+    {
+      "src": "records/nightlights/f001.jpg",
+      "t": 2.6,
+      "n": 1
+    },
+    {
+      "src": "records/nightlights/f002.jpg",
+      "t": 4.84,
+      "n": 2
+    },
+    {
+      "src": "records/nightlights/f003.jpg",
+      "t": 7.09,
+      "n": 3
+    },
+    {
+      "src": "records/nightlights/f004.jpg",
+      "t": 9.33,
+      "n": 4
+    },
+    {
+      "src": "records/nightlights/f005.jpg",
+      "t": 11.57,
+      "n": 5
+    },
+    {
+      "src": "records/nightlights/f006.jpg",
+      "t": 13.82,
+      "n": 6
+    },
+    {
+      "src": "records/nightlights/f007.jpg",
+      "t": 16.06,
+      "n": 7
+    },
+    {
+      "src": "records/nightlights/f008.jpg",
+      "t": 18.3,
+      "n": 8
+    },
+    {
+      "src": "records/nightlights/f009.jpg",
+      "t": 20.55,
+      "n": 9
+    },
+    {
+      "src": "records/nightlights/f010.jpg",
+      "t": 22.79,
+      "n": 10
+    },
+    {
+      "src": "records/nightlights/f011.jpg",
+      "t": 25.03,
+      "n": 11
+    },
+    {
+      "src": "records/nightlights/f012.jpg",
+      "t": 27.27,
+      "n": 12
+    },
+    {
+      "src": "records/nightlights/f013.jpg",
+      "t": 29.52,
+      "n": 13
+    },
+    {
+      "src": "records/nightlights/f014.jpg",
+      "t": 31.76,
+      "n": 14
+    },
+    {
+      "src": "records/nightlights/f015.jpg",
+      "t": 34.0,
+      "n": 15
+    },
+    {
+      "src": "records/nightlights/f016.jpg",
+      "t": 36.25,
+      "n": 16
+    },
+    {
+      "src": "records/nightlights/f017.jpg",
+      "t": 38.49,
+      "n": 17
+    },
+    {
+      "src": "records/nightlights/f018.jpg",
+      "t": 40.73,
+      "n": 18
+    }
+  ]
+}

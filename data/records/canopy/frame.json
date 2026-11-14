@@ -1,0 +1,117 @@
+{
+  "id": "canopy",
+  "title": "Canopy",
+  "side": "Biosphere",
+  "year": "GEDI, 2019\u20142021",
+  "blurb": "Forest height from a laser in orbit. Tall canopy rings out as bright, wide-open harmony.",
+  "instrument": "marimba, airy pad, soft mallets",
+  "source": {
+    "title": "Canopy",
+    "agency": "NASA Scientific Visualization Studio (EIC Content Database)",
+    "url": "https://svs.gsfc.nasa.gov/4950/",
+    "credit": "NASA's Scientific Visualization Studio",
+    "roles": [],
+    "datasets": [
+      "Datasets used Relative Height [GEDI]"
+    ],
+    "video": {
+      "duration": 51.48,
+      "width": 1920,
+      "height": 1080,
+      "mb": 18.6
+    }
+  },
+  "cover": "records/canopy/cover.jpg",
+  "frames": [
+    {
+      "src": "records/canopy/f001.jpg",
+      "t": 3.09,
+      "n": 1
+    },
+    {
+      "src": "records/canopy/f002.jpg",
+      "t": 5.75,
+      "n": 2
+    },
+    {
+      "src": "records/canopy/f003.jpg",
+      "t": 8.42,
+      "n": 3
+    },
+    {
+      "src": "records/canopy/f004.jpg",
+      "t": 11.08,
+      "n": 4
+    },
+    {
+      "src": "records/canopy/f005.jpg",
+      "t": 13.75,
+      "n": 5
+    },
+    {
+      "src": "records/canopy/f006.jpg",
+      "t": 16.41,
+      "n": 6
+    },
+    {
+      "src": "records/canopy/f007.jpg",
+      "t": 19.08,
+      "n": 7
+    },
+    {
+      "src": "records/canopy/f008.jpg",
+      "t": 21.74,
+      "n": 8
+    },
+    {
+      "src": "records/canopy/f009.jpg",
+      "t": 24.41,
+      "n": 9
+    },
+    {
+      "src": "records/canopy/f010.jpg",
+      "t": 27.07,
+      "n": 10
+    },
+    {
+      "src": "records/canopy/f011.jpg",
+      "t": 29.74,
+      "n": 11
+    },
+    {
+      "src": "records/canopy/f012.jpg",
+      "t": 32.4,
+      "n": 12
+    },
+    {
+      "src": "records/canopy/f013.jpg",
+      "t": 35.07,
+      "n": 13
+    },
+    {
+      "src": "records/canopy/f014.jpg",
+      "t": 37.73,
+      "n": 14
+    },
+    {
+      "src": "records/canopy/f015.jpg",
+      "t": 40.4,
+      "n": 15
+    },
+    {
+      "src": "records/canopy/f016.jpg",
+      "t": 43.06,
+      "n": 16
+    },
+    {
+      "src": "records/canopy/f017.jpg",
+      "t": 45.73,
+      "n": 17
+    },
+    {
+      "src": "records/canopy/f018.jpg",
+      "t": 48.39,
+      "n": 18
+    }
+  ]
+}

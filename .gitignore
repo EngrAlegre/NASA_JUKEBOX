@@ -1,0 +1,5 @@
+.cache/
+.trash/
+audio/*.wav
+audio/render-report.json
+__pycache__/

@@ -1,0 +1,115 @@
+{
+  "id": "co2",
+  "title": "Carbon Weather",
+  "side": "Atmosphere",
+  "year": "DYAMOND model, 2023",
+  "blurb": "A model atmosphere breathing carbon dioxide. The point cloud thickens and the chord darkens with it.",
+  "instrument": "reed organ, low strings, tape hiss",
+  "source": {
+    "title": "Carbon Weather",
+    "agency": "NASA Scientific Visualization Studio (EIC Content Database)",
+    "url": "https://svs.gsfc.nasa.gov/5196/",
+    "credit": "NASA's Scientific Visualization Studio",
+    "roles": [],
+    "datasets": [],
+    "video": {
+      "duration": 39.2,
+      "width": 1920,
+      "height": 1080,
+      "mb": 7.2
+    }
+  },
+  "cover": "records/co2/cover.jpg",
+  "frames": [
+    {
+      "src": "records/co2/f001.jpg",
+      "t": 2.35,
+      "n": 1
+    },
+    {
+      "src": "records/co2/f002.jpg",
+      "t": 4.38,
+      "n": 2
+    },
+    {
+      "src": "records/co2/f003.jpg",
+      "t": 6.41,
+      "n": 3
+    },
+    {
+      "src": "records/co2/f004.jpg",
+      "t": 8.44,
+      "n": 4
+    },
+    {
+      "src": "records/co2/f005.jpg",
+      "t": 10.47,
+      "n": 5
+    },
+    {
+      "src": "records/co2/f006.jpg",
+      "t": 12.5,
+      "n": 6
+    },
+    {
+      "src": "records/co2/f007.jpg",
+      "t": 14.53,
+      "n": 7
+    },
+    {
+      "src": "records/co2/f008.jpg",
+      "t": 16.56,
+      "n": 8
+    },
+    {
+      "src": "records/co2/f009.jpg",
+      "t": 18.59,
+      "n": 9
+    },
+    {
+      "src": "records/co2/f010.jpg",
+      "t": 20.61,
+      "n": 10
+    },
+    {
+      "src": "records/co2/f011.jpg",
+      "t": 22.64,
+      "n": 11
+    },
+    {
+      "src": "records/co2/f012.jpg",
+      "t": 24.67,
+      "n": 12
+    },
+    {
+      "src": "records/co2/f013.jpg",
+      "t": 26.7,
+      "n": 13
+    },
+    {
+      "src": "records/co2/f014.jpg",
+      "t": 28.73,
+      "n": 14
+    },
+    {
+      "src": "records/co2/f015.jpg",
+      "t": 30.76,
+      "n": 15
+    },
+    {
+      "src": "records/co2/f016.jpg",
+      "t": 32.79,
+      "n": 16
+    },
+    {
+      "src": "records/co2/f017.jpg",
+      "t": 34.82,
+      "n": 17
+    },
+    {
+      "src": "records/co2/f018.jpg",
+      "t": 36.85,
+      "n": 18
+    }
+  ]
+}
