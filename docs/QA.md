@@ -81,6 +81,13 @@ confirms the in-page export and the batch renderer are running the same graph.
 | The tour runs unattended | `?tour=1` at 20 s: caption 2 visible, City Lights playing, frame 7/18; at 52 s: Ocean Heat playing, caption 6 visible |
 | The tour hands back control | any transport key or *Skip tour* ends it and leaves the instrument in the user's hands |
 
+### The honesty switch
+
+| Check | Result |
+|---|---|
+| "Show NASA frame" toggles the overlay off | `aria-pressed=true`, label becomes *Show overlay*, announced as *"Showing the unmodified NASA frame."* |
+| Toggling back restores it | `aria-pressed=false`, playhead and activity columns return on the next frame |
+
 ### Reduced motion
 
 Reloaded with `prefers-reduced-motion: reduce` emulated: the score still draws

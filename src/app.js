@@ -36,7 +36,8 @@
     minMidi: 40, maxMidi: 84,
     playing: false,
     loop: true,
-    concert: false,          // playing the whole album instead of one side,
+    concert: false,          // playing the whole album instead of one side
+    showSource: false,       // draw the raw NASA frame, without our overlay
     muted: false,
     contrast: false,
     autoDescribe: false,
@@ -84,6 +85,7 @@
     exportBtn: $("#btn-export"),
     scoreBtn: $("#btn-score"),
     concert: $("#btn-concert"),
+    source: $("#btn-source"),
     caption: $("#tour-caption"),
     skip: $("#tour-skip"),
     liveStatus: $("#live-status"),
@@ -378,6 +380,10 @@
    */
   function drawStage(img, features, progress) {
     const canvas = el.stage;
+    // "Show NASA frame" is the honesty switch: the same pixels, with nothing of
+    // ours drawn on top. The playhead and the sixteen activity columns are an
+    // interpretation, and a judge should be able to turn them off.
+    if (S.showSource) { features = null; progress = -1; }
     const { w, h } = sizeCanvas(canvas);
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, w, h);
@@ -1094,6 +1100,19 @@
 
     $("#btn-keys").addEventListener("click", () => el.keysDialog.showModal());
     $("#btn-tour").addEventListener("click", () => runTour());
+
+    if (el.source) {
+      el.source.addEventListener("click", () => {
+        S.showSource = !S.showSource;
+        el.source.setAttribute("aria-pressed", String(S.showSource));
+        el.source.textContent = S.showSource ? "Show overlay" : "Show NASA frame";
+        const fr = S.frames[S.current];
+        if (fr) drawStage(fr.img, fr.features, S.playing ? 0 : -1);
+        announce(S.showSource
+          ? "Showing the unmodified NASA frame."
+          : "Showing the measurement overlay.");
+      });
+    }
     if (el.skip) el.skip.addEventListener("click", () => { endTour(); pause(); });
 
     // record change on narrow layouts uses the same buttons; nothing extra.

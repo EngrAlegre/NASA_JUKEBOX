@@ -156,6 +156,9 @@ people. Accessibility is therefore not a checkbox here — it is the argument.
   has a number and a label.
 - **The picture is optional.** Mute the sound and read; close your eyes and
   listen; do both. Neither channel is the "real" one.
+- **Show NASA frame** hides every overlay — playhead, activity columns — leaving
+  the unmodified source pixels. Our drawing on top of the data is an
+  interpretation, and it can be switched off in one click.
 
 ## Export
 

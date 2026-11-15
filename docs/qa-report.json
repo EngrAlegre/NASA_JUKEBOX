@@ -1,6 +1,6 @@
 {
   "url": "http://127.0.0.1:8177/",
-  "when": "2026-11-15T05:50:59.710Z",
+  "when": "2026-11-15T06:07:14.266Z",
   "passed": 18,
   "failed": 0,
   "results": [
@@ -8,7 +8,7 @@
       "group": "timing",
       "name": "first side playable",
       "ok": true,
-      "detail": "803 ms from navigation"
+      "detail": "1158 ms from navigation"
     },
     {
       "group": "timing",
@@ -20,7 +20,7 @@
       "group": "a11y",
       "name": "every interactive node has a name",
       "ok": true,
-      "detail": "48 interactive nodes"
+      "detail": "49 interactive nodes"
     },
     {
       "group": "a11y",
@@ -120,13 +120,13 @@
     "main": 1,
     "contentinfo": 1,
     "status": 2,
-    "StaticText": 134,
+    "StaticText": 136,
     "heading": 12,
-    "paragraph": 18,
+    "paragraph": 19,
     "navigation": 1,
     "region": 5,
-    "InlineTextBox": 165,
-    "button": 38,
+    "InlineTextBox": 167,
+    "button": 39,
     "list": 3,
     "group": 2,
     "generic": 9,

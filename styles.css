@@ -63,6 +63,20 @@ code { font-family: var(--mono); font-size: 0.92em; color: var(--cyan); }
   border: 0;
 }
 
+/* film grain: SVG turbulence, tiled, very low opacity */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  mix-blend-mode: overlay;
+}
+body.contrast::after { opacity: 0.02; }
+
 .skip-link {
   position: absolute;
   left: 12px; top: -60px;
@@ -304,6 +318,21 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   aspect-ratio: 16 / 9;          /* replaced per record from the frame's own shape */
   max-height: 47vh;
   min-height: 230px;
+  box-shadow:
+    0 0 0 1px rgba(255, 182, 72, 0.10),
+    0 30px 70px rgba(0, 0, 0, 0.62),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+/* a printed bezel, so the picture reads as a framed object */
+.stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.07),
+    inset 0 0 70px rgba(0, 0, 0, 0.45);
 }
 .stage canvas { width: 100%; height: 100%; display: block; }
 
@@ -327,6 +356,30 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 #stage-title { color: var(--amber); font-weight: 600; letter-spacing: 0.12em; }
 
 /* guided tour */
+.source-toggle {
+  position: absolute;
+  top: 44px;
+  right: 13px;
+  z-index: 4;
+  padding: 6px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: rgba(5, 6, 10, 0.72);
+  color: var(--ink-2);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+  transition: color 0.15s var(--ease), border-color 0.15s var(--ease), background 0.15s var(--ease);
+}
+.source-toggle:hover { color: var(--ink); border-color: var(--amber-line); }
+.source-toggle[aria-pressed="true"] {
+  color: var(--amber);
+  border-color: var(--amber);
+  background: rgba(255, 182, 72, 0.14);
+}
+
 .tour-caption {
   position: absolute;
   left: 50%;
