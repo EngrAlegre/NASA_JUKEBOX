@@ -185,7 +185,8 @@ async function main() {
   })()`);
   const sk = JSON.parse(shortcut);
   check("keyboard", "space starts playback", sk.playing === "true", `aria-pressed=${sk.playing}`);
-  check("keyboard", "arrow steps to the next bar", /frame 2/.test(sk.frame), sk.frame);
+  // "frame" or "scene" depending on whether the side has motion behind it.
+  check("keyboard", "arrow steps to the next bar", /^(frame|scene) 2 \//.test(sk.frame), sk.frame);
 
   /* ------------------------------- export ------------------------------- */
   await evaluate("document.querySelector('#btn-export').click()");

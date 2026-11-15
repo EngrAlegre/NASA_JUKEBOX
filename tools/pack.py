@@ -86,7 +86,8 @@ def main() -> None:
                 shutil.copy2(os.path.join(audio_src, f), os.path.join(DIST, "audio", f))
 
     # Sanity: the app cannot run without these.
-    required = ["index.html", "src/app.js", "data/records.js", "data/records/ocean/cover.png"]
+    required = ["index.html", "src/app.js", "src/motion.js", "data/records.js",
+                "data/records/ocean/cover.png", "data/motion/nightlights.mp4"]
     for rel in required:
         if not os.path.exists(os.path.join(DIST, rel)):
             missing.append(rel)

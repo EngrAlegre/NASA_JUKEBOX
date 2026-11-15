@@ -27,7 +27,7 @@ no network — the parts a reviewer can audit without listening.
 | Determinism | 1 | the same features compose to byte-identical events |
 | Modal safety | 2 | every pitch of every bar, including extremes, belongs to the record's mode |
 | Tempo | 2 | tempo stays inside the record's range and moves at most 7 BPM per bar |
-| Arrangement | 3 | 18 frames → 18 bars; sections move intro → outro; every bar has a usable duration |
+| Arrangement | 3 | 18 scenes → 18 bars; sections move intro → outro; every bar has a usable duration |
 | Calibration | 1 | a side with no variation falls back to neutral rather than amplifying noise |
 | Language | 2 | the description names the bar and speaks in words, not measurements |
 

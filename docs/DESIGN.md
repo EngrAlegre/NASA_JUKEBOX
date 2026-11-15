@@ -91,7 +91,7 @@ sequence; it is not a claim that one visualization is brighter than another.
 A side with no genuine variation (span < 0.012) falls back to a neutral centre
 rather than amplifying sensor noise into a melody.
 
-## 5. Why eighteen frames, and why one bar each
+## 5. Why eighteen scenes, and why one bar each
 
 - **Eighteen** is the most that can be sampled evenly from a 39-second sequence
   at ~2 s spacing while still skipping intros and fades, and the fewest that can

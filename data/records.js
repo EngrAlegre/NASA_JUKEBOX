@@ -135,7 +135,13 @@ window.JUKEBOX_DATA = {
           "t": 40.73,
           "n": 18
         }
-      ]
+      ],
+      "motion": {
+        "file": "data/motion/nightlights.mp4",
+        "scenes": 18,
+        "slice": 1.6,
+        "duration": 28.83
+      }
     },
     {
       "id": "co2",
@@ -267,7 +273,13 @@ window.JUKEBOX_DATA = {
           "t": 36.85,
           "n": 18
         }
-      ]
+      ],
+      "motion": {
+        "file": "data/motion/co2.mp4",
+        "scenes": 18,
+        "slice": 1.461,
+        "duration": 26.46
+      }
     },
     {
       "id": "canopy",
@@ -399,7 +411,13 @@ window.JUKEBOX_DATA = {
           "t": 48.39,
           "n": 18
         }
-      ]
+      ],
+      "motion": {
+        "file": "data/motion/canopy.mp4",
+        "scenes": 18,
+        "slice": 1.6,
+        "duration": 28.5
+      }
     },
     {
       "id": "lightning",
@@ -519,7 +537,13 @@ window.JUKEBOX_DATA = {
           "t": 203.7,
           "n": 18
         }
-      ]
+      ],
+      "motion": {
+        "file": "data/motion/lightning.mp4",
+        "scenes": 18,
+        "slice": 1.6,
+        "duration": 28.92
+      }
     },
     {
       "id": "ocean",
@@ -651,7 +675,13 @@ window.JUKEBOX_DATA = {
           "n": 18,
           "label": "2026-11-11"
         }
-      ]
+      ],
+      "motion": {
+        "file": "data/motion/ocean.mp4",
+        "scenes": 18,
+        "slice": 1.5,
+        "duration": 27.0
+      }
     }
   ]
 };

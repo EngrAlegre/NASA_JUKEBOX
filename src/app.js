@@ -30,6 +30,11 @@
   /* ------------------------------ state -------------------------------- */
 
   const S = {
+    motion: null,
+    video: null,
+    lastLive: 0,
+    analyser: null,
+    bins: null,
     index: 0,
     frames: [],          // [{src,label,img,features,bar,desc}]
     bars: [],
@@ -92,6 +97,9 @@
     liveLayer: $("#live-layer"),
     liveStep: $("#live-step"),
     keysDialog: $("#keys-dialog"),
+    liveStrip: $("#live-strip"),
+    liveValues: $("#live-values"),
+    spectrum: $("#spectrum"),
   };
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -229,6 +237,32 @@
         .join(", ")}.`;
     }
 
+    // The side is cut to the animation that produced it: eighteen scenes, one
+    // per bar, from the published NASA movie.
+    if (S.video) { Motion.drop(S.video); S.video = null; }
+    S.motion = rec.motion || null;
+    if (S.motion && window.Motion) {
+      S.video = Motion.make(S.motion.file);
+      el.liveStrip.hidden = false;
+      el.liveValues.textContent = "loading the animation…";
+      const v = S.video;
+      v.addEventListener("canplay", () => {
+        if (S.video === v) el.liveValues.textContent = "animation ready";
+      }, { once: true });
+      v.addEventListener("error", () => {
+        if (S.video === v) {
+          el.liveValues.textContent = "animation unavailable — showing still frames";
+          Motion.drop(S.video);
+          S.video = null;
+        }
+      }, { once: true });
+      el.stageCount.textContent = `scene 1 / ${S.frames.length || 18}`;
+      if (S.frames[0] && S.frames[0].img) drawStage(S.frames[0].img, S.frames[0].features, 0);
+    } else {
+      S.motion = null;
+      el.liveStrip.hidden = true;
+    }
+
     if (wasPlaying) {
       S.playing = true;
       el.play.setAttribute("aria-pressed", "true");
@@ -302,6 +336,8 @@
     window.__jukebox.lastReadyMs = Math.round(performance.now());
     window.__jukebox.frames = n;
     window.__jukebox.record = rec.id;
+    // Handy in the console and for tools/qa.js: the live state, not a copy.
+    window.__jukebox.state = S;
     el.stageCount.textContent = `frame 1 / ${n}`;
     el.narration.textContent = frames[0].desc.long;
     el.frameDesc.textContent = frames[0].desc.long;
@@ -392,8 +428,8 @@
 
     if (!img) return;
 
-    const iw = img.naturalWidth || img.width;
-    const ih = img.naturalHeight || img.height;
+    const iw = img.videoWidth || img.naturalWidth || img.width;
+    const ih = img.videoHeight || img.naturalHeight || img.height;
     const scale = Math.min(w / iw, h / ih);
     const dw = iw * scale;
     const dh = ih * scale;
@@ -531,6 +567,19 @@
       S.ctx = new Ctor();
       S.engine = Sonify.createEngine(S.ctx);
       S.engine.master.gain.value = 0.0001;
+      // A tap, not a second output: the analyser listens to the same bus the
+      // speakers do, so the spectrum cannot disagree with what is heard.
+      try {
+        S.analyser = S.ctx.createAnalyser();
+        S.analyser.fftSize = 2048;
+        S.analyser.minDecibels = -95;
+        S.analyser.maxDecibels = -18;
+        S.analyser.smoothingTimeConstant = 0.72;
+        S.engine.master.connect(S.analyser);
+        S.bins = new Uint8Array(S.analyser.frequencyBinCount);
+      } catch (e) {
+        S.analyser = null;
+      }
     }
     if (S.ctx.state === "suspended") S.ctx.resume();
     return S.ctx;
@@ -541,6 +590,12 @@
     ensureAudio();
     S.playing = true;
     S.engine.fadeIn(S.ctx.currentTime + 0.02, FADE, S.muted ? 0.0001 : S.masterVolume * 0.9);
+    if (S.video && S.motion) {
+      Motion.syncBar(S.video, S.motion, S.current, S.bars[S.current] && S.bars[S.current].barDur);
+      // Reduced motion keeps the scene, not the drift: the frame still follows
+      // the music, it simply does not move inside the bar.
+      if (!reduceMotion) Motion.play(S.video);
+    }
     startTransport();
     el.play.setAttribute("aria-pressed", "true");
     el.play.setAttribute("aria-label", "Pause");
@@ -598,6 +653,7 @@
     if (S.tickId) window.clearInterval(S.tickId);
     S.tickId = null;
     if (S.engine && S.ctx) S.engine.fadeOut(S.ctx.currentTime, 0.25);
+    if (S.video) Motion.pause(S.video);
     el.play.setAttribute("aria-pressed", "false");
     el.play.setAttribute("aria-label", "Play this side");
     if (window.speechSynthesis) window.speechSynthesis.cancel();
@@ -681,7 +737,7 @@
     S.current = i;
     drawStage(fr.img, fr.features, S.playing ? 0 : -1);
     renderMeters(fr, i);
-    el.stageCount.textContent = `frame ${i + 1} / ${S.frames.length}`;
+    el.stageCount.textContent = `${S.motion ? "scene" : "frame"} ${i + 1} / ${S.frames.length}`;
     el.stageSection.textContent = fr.bar.section;
     el.stageTempo.textContent = `${fr.bar.bpm} BPM`;
     el.frameDesc.textContent = fr.desc.long;
@@ -801,10 +857,13 @@
       const progress = bar && bar.barDur ? (now - cur.t) / bar.barDur : 0;
       if (cur.index !== S.current) {
         S.current = cur.index;
+        if (S.video && S.motion) Motion.syncBar(S.video, S.motion, cur.index, bar && bar.barDur);
         const fr = S.frames[cur.index];
         if (fr) {
           renderMeters(fr, cur.index);
-          el.stageCount.textContent = `frame ${cur.index + 1} / ${S.frames.length}`;
+          el.stageCount.textContent = S.motion
+            ? `scene ${cur.index + 1} / ${S.frames.length}`
+            : `frame ${cur.index + 1} / ${S.frames.length}`;
           el.stageSection.textContent = fr.bar.section;
           el.stageTempo.textContent = `${fr.bar.bpm} BPM`;
           el.frameDesc.textContent = fr.desc.long;
@@ -814,13 +873,90 @@
         }
       }
       const fr = S.frames[cur.index];
-      if (fr) drawStage(fr.img, fr.features, Math.max(0, Math.min(1, progress)));
+      const moving = S.video && Motion.ready(S.video);
+      if (fr) drawStage(moving ? S.video : fr.img, fr.features, Math.max(0, Math.min(1, progress)));
+      if (moving) liveReadout();
+      drawSpectrum();
       updateClock(now, cur.t, bar);
       updateRoll(now);
     }
 
     // drop old timeline entries
     while (S.timeline.length > 2 && S.timeline[1].t < now - 1) S.timeline.shift();
+  }
+
+  /* The sound itself, drawn from the master bus. Low frequencies on the left,
+     where the drone and the bass live; the melody and the strikes climb to the
+     right. Peak caps fall slowly so a short note leaves a trace. */
+  function drawSpectrum() {
+    const canvas = el.spectrum;
+    if (!canvas) return;
+    const { w, h } = sizeCanvas(canvas);
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, w, h);
+
+    if (!S.analyser || !S.bins) return;
+    S.analyser.getByteFrequencyData(S.bins);
+
+    // The strip is scaled to the band this music actually occupies. Measured on
+    // the rendered sides and on the live bus, the mix is fundamentals and first
+    // partials: drawing to Nyquist would leave most of the strip empty and imply
+    // the mix was broken rather than warm.
+    const hzPerBin = (S.ctx ? S.ctx.sampleRate : 48000) / (S.analyser.fftSize || 2048);
+    const span = Math.max(48, Math.min(S.bins.length, Math.round(1900 / hzPerBin)));
+    const n = Math.min(84, span);
+    const bw = w / n;
+
+    for (let i = 0; i < n; i++) {
+      // Take the energy of the whole band, not one bin of it: a single bin
+      // between two partials is silence, and the strip read as a dotted line.
+      const from = Math.floor((i * span) / n);
+      const to = Math.max(from + 1, Math.floor(((i + 1) * span) / n));
+      let peak = 0;
+      for (let k = from; k < to; k++) if (S.bins[k] > peak) peak = S.bins[k];
+      const v = peak / 255;
+      // Gentle tilt, the same one mixing desks use: without it every mix looks
+      // like a bass hump and nothing else.
+      const tilt = 0.88 + 0.42 * (i / n);
+      // Slightly below 1: the byte scale is linear in dB, so quiet upper
+      // partials sit near 3/255 and would never show without lifting them.
+      const amp = Math.min(1, Math.pow(v, 0.82) * tilt);
+      // Peak hold with a slow fall: a spectrum that only ever shows the instant
+      // flickers, and a falling bar is what the ear expects to see.
+      if (!S.hold || S.hold.length !== n) S.hold = new Float32Array(n);
+      const held = Math.max(amp, (S.hold[i] || 0) - 0.014);
+      S.hold[i] = held;
+      const bh = Math.max(1.5, held * (h - 4));
+      const x = i * bw;
+      const grad = ctx.createLinearGradient(0, h - bh, 0, h);
+      grad.addColorStop(0, "rgba(255,182,72,0.95)");
+      grad.addColorStop(1, "rgba(99,219,228,0.55)");
+      ctx.fillStyle = grad;
+      ctx.fillRect(x + 0.5, h - bh, Math.max(1, bw - 1.5), bh);
+
+      ctx.fillStyle = "rgba(255,255,255,0.28)";
+      ctx.fillRect(x + 0.5, h - bh - 2, Math.max(1, bw - 1.5), 1);
+    }
+  }
+
+  /* What the animation is measuring right now, five times a second. This is the
+     honest answer to "is the sound really following the picture": the numbers on
+     screen are read from the frame you are watching. */
+  function liveReadout() {
+    const now = performance.now();
+    if (now - S.lastLive < 240) return;
+    S.lastLive = now;
+    if (!S.video || !Motion.ready(S.video)) return;
+    let f;
+    try {
+      f = Analyze.analyzeImage(S.video, { axis: RECORDS[S.index].axis });
+    } catch (e) {
+      return;
+    }
+    el.liveValues.textContent =
+      `live · luminance ${Math.round((f.luma || 0) * 100)}% · ` +
+      `colourfulness ${Math.round((f.colorfulness || 0) * 100)}% · ` +
+      `coverage ${Math.round((f.coverage || 0) * 100)}%`;
   }
 
   function updateClock(now, barStart, bar) {

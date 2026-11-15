@@ -30,7 +30,7 @@ resolve. Full instructions, headers and gotchas: [`docs/DEPLOY.md`](docs/DEPLOY.
 Five sides, one per sphere of the Earth system, all sampled from published NASA
 visualizations.
 
-| # | Record | Sphere | Source | 18 frames from |
+| # | Record | Sphere | Source | 18 scenes from |
 |---|--------|--------|--------|----------------|
 | 1 | **City Lights** | Human footprint | [SVS 5313](https://svs.gsfc.nasa.gov/5313/) · Black Marble / VIIRS, 2012–2023 | 43 s sequence |
 | 2 | **Carbon Weather** | Atmosphere | [SVS 5196](https://svs.gsfc.nasa.gov/5196/) · DYAMOND CO₂, simulated Jan 2020 | 39 s sequence |
@@ -179,7 +179,8 @@ src/records.js          musical settings per record; live layer list
 src/gibs.js             WMS URLs and date series for the live tuner
 data/records.json       generated catalog: frames, credits, datasets
 data/records.js         the same catalog as a script, for offline use
-data/records/<id>/      18 frames per record + cover
+data/records/<id>/      18 measured scenes per record + cover
+data/motion/<id>.mp4     the same 18 scenes as one moving clip
 audio/                  the five sides as MP3 (rendered by the app itself)
 tests/engine.test.js    62 assertions over analysis and composition
 tools/build_library.py  rebuild the library from NASA SVS / GIBS

@@ -1,0 +1,59 @@
+{
+ "motion": {
+  "nightlights": {
+   "id": "nightlights",
+   "file": "data/motion/nightlights.mp4",
+   "scenes": 18,
+   "slice": 1.6,
+   "duration": 28.83,
+   "width": 960,
+   "height": 270,
+   "mb": 0.29,
+   "fps": 24
+  },
+  "co2": {
+   "id": "co2",
+   "file": "data/motion/co2.mp4",
+   "scenes": 18,
+   "slice": 1.461,
+   "duration": 26.46,
+   "width": 960,
+   "height": 540,
+   "mb": 0.77,
+   "fps": 24
+  },
+  "canopy": {
+   "id": "canopy",
+   "file": "data/motion/canopy.mp4",
+   "scenes": 18,
+   "slice": 1.6,
+   "duration": 28.5,
+   "width": 960,
+   "height": 540,
+   "mb": 0.72,
+   "fps": 24
+  },
+  "lightning": {
+   "id": "lightning",
+   "file": "data/motion/lightning.mp4",
+   "scenes": 18,
+   "slice": 1.6,
+   "duration": 28.92,
+   "width": 960,
+   "height": 540,
+   "mb": 1.32,
+   "fps": 24
+  },
+  "ocean": {
+   "id": "ocean",
+   "file": "data/motion/ocean.mp4",
+   "scenes": 18,
+   "slice": 1.5,
+   "duration": 27.0,
+   "width": 960,
+   "height": 480,
+   "mb": 0.22,
+   "fps": 24
+  }
+ }
+}

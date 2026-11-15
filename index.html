@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Five Sides — NASA Earth Information Center frames, played as sound</title>
-<meta name="description" content="Five Sides reads NASA Earth Information Center frames pixel by pixel and plays each one as a bar of music. Five records and a live frequency, built for the 2026 NASA Space Apps Challenge.">
+<title>Five Sides — NASA Earth Information Center data, played as sound</title>
+<meta name="description" content="Five Sides plays NASA Earth Information Center animations as music: eighteen scenes of each record, measured pixel by pixel and played bar by bar. Five records and a live frequency, built for the 2026 NASA Space Apps Challenge.">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#06070a">
 <!-- Works on any host, including ones where response headers cannot be set
@@ -24,7 +24,7 @@
 <meta property="og:image:alt" content="The jukebox with a sea surface temperature map on the stage and its controls below.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Five Sides">
-<meta name="twitter:description" content="NASA Earth Information Center frames, read pixel by pixel and played as music.">
+<meta name="twitter:description" content="NASA Earth Information Center animations, read pixel by pixel and played as music.">
 <meta name="twitter:image" content="https://www.fivesides.site/og.png">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%2306070a'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23ffb648' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%23ffb648'/%3E%3C/svg%3E">
@@ -118,7 +118,7 @@
       <canvas id="frame-canvas" role="img" aria-labelledby="frame-desc"></canvas>
       <div class="stage-top" aria-hidden="true">
         <span id="stage-title">City Lights</span>
-        <span id="stage-count">frame 1 / 18</span>
+        <span id="stage-count">scene 1 / 18</span>
       </div>
       <div class="stage-bottom" aria-hidden="true">
         <span id="stage-section">intro</span>
@@ -131,7 +131,12 @@
       <p class="sr-only" id="frame-desc">Loading the first frame.</p>
     </div>
 
-    <ol class="filmstrip" id="filmstrip" aria-label="Bars in this side"></ol>
+    <canvas class="spectrum" id="spectrum" aria-hidden="true"></canvas>
+    <div class="live-strip" id="live-strip" hidden>
+      <span class="live-dot" aria-hidden="true"></span>
+      <span id="live-values">measuring the moving frame</span>
+    </div>
+      <ol class="filmstrip" id="filmstrip" aria-label="Bars in this side"></ol>
 
     <div class="transport" role="group" aria-label="Transport">
       <button type="button" class="round" id="btn-prev" aria-label="Previous bar" title="Previous bar (←)">
@@ -206,7 +211,7 @@
     <h2 id="method-heading" class="eyebrow">Method</h2>
     <p class="lede">
       The jukebox never invents a note. Every sound traces back to a number
-      measured from a real NASA frame, printed in the table below. What this page
+      measured from a real NASA scene, printed in the table below. What this page
       adds is judgement: which measurement drives which musical parameter, and
       the constraints that keep eighteen bars of satellite data listenable as
       music.
@@ -215,7 +220,7 @@
     <div class="method-grid">
       <div class="method-col">
         <h3>1 · Fetch</h3>
-        <p>Each record is a published NASA visualization. Frames are sampled evenly across the sequence, skipping title cards and fades, and stored locally so the page runs offline. The live tuner instead requests one WMS render per date from NASA GIBS.</p>
+        <p>Each record is a published NASA animation. Eighteen scenes are cut from it, evenly spaced, skipping title cards and fades, and encoded into one small clip that plays offline. The scene you are looking at is the instant the bar beside it was measured from, so the picture keeps moving inside the music instead of cutting between stills. The live tuner instead requests one WMS render per date from NASA GIBS.</p>
 
         <h3>2 · Measure</h3>
         <p>Every second pixel is read straight out of the canvas: luminance, saturation, a circular mean hue, Hasler–Süsstrunk colourfulness, position along the record's own colour bar, gradient texture via a Sobel pass, and sixteen vertical columns plus six horizontal bands of activity. Around 230,000 samples per frame, in about eight milliseconds.</p>
@@ -227,7 +232,7 @@
         <p>Measurements become one bar: a drone, a chord, a bass line, sixteen melodic steps and percussion. Three constraints keep eighteen bars of data listenable: every pitch is drawn from a fixed mode, so no measurement can produce a wrong note; tempo moves at most seven BPM per bar; and the chord walks toward the degree the colour bar asks for one scale step at a time, so harmony is a progression rather than a series of jumps.</p>
 
         <h3>5 · Play</h3>
-        <p>A Web Audio lookahead scheduler places events about 120&nbsp;ms ahead of the clock, so the pulse stays steady while the page animates. The export path renders the same graph through an <code>OfflineAudioContext</code>: the WAV is the performance, not an approximation of it.</p>
+        <p>A Web Audio lookahead scheduler places events about 120&nbsp;ms ahead of the clock, so the pulse stays steady while the page animates. Each bar plays its own scene, slowed to the length of the bar, so the maps drift rather than jump. The strip under the stage is an analyser on the master bus — what it shows is the audio graph, not a simulation — and the readout beneath it is the live measurement of the moving frame. The export path renders the same graph through an <code>OfflineAudioContext</code>: the WAV is the performance, not an approximation of it.</p>
       </div>
 
       <div class="method-col">
@@ -305,6 +310,7 @@
 <script src="src/analyze.js"></script>
 <script src="src/sonify.js"></script>
 <script src="src/gibs.js"></script>
+<script src="src/motion.js"></script>
 <script src="src/records.js"></script>
 <script src="data/records.js"></script>
 <script src="src/app.js"></script>

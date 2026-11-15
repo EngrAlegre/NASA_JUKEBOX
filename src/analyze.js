@@ -214,8 +214,10 @@ const Analyze = (() => {
 
   /** Browser helper: draw an image into a scratch canvas and measure it. */
   function analyzeImage(img, opts) {
-    const w = img.naturalWidth || img.width;
-    const h = img.naturalHeight || img.height;
+    // <video> exposes videoWidth/videoHeight; <img> exposes naturalWidth. The
+    // motion layer draws video frames through this same path.
+    const w = img.videoWidth || img.naturalWidth || img.width;
+    const h = img.videoHeight || img.naturalHeight || img.height;
     const canvas = document.createElement("canvas");
     canvas.width = w;
     canvas.height = h;
