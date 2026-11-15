@@ -1,7 +1,26 @@
-# The demo video
+# The demo videos
 
-`Five-Sides-demo.mp4` — 28.7 s, 1920×1080, H.264 + AAC, 3.7 MB. Generated, not
-edited by hand, so it can be rebuilt whenever the app changes.
+Two cuts, both generated rather than hand-edited, so either can be rebuilt when
+the app changes.
+
+| File | Length | Use |
+|---|---|---|
+| `Five-Sides-demo.mp4` | 28.7 s | the submission candidate — the challenge accepts a 30-second video or a 7-slide deck |
+| `Five-Sides-demo-60s.mp4` | 57.2 s | the feature reel: every record, plus the keyboard map, the honesty switch and export |
+
+The long cut is a montage of nine takes:
+
+| Segment | Shows |
+|---|---|
+| title | name, team, site |
+| Carbon Weather | motion, spectrum, live measurement readout |
+| Canopy, Lightning, Ocean Heat, City Lights | four more records, each audibly different |
+| keys | the keyboard map dialog — every control is reachable |
+| source | `Show NASA frame`: every overlay off, raw pixels |
+| export | `Export WAV` in its working state, beside the meters and piano roll |
+
+Each segment is scored with the slice of that side's own audio matching the
+frames on screen, so nothing is mimed.
 
 ## Rebuilding
 
@@ -39,7 +58,21 @@ from, so what you hear is what the screen was doing.
 Captions are a lower third: a band with a cyan hairline. Loose text at the bottom
 of the frame landed on the app's own labels and read as a rendering fault.
 
-## Four things that broke, and why
+## Three more, from the long cut
+
+**The caption band was hiding its own subject.** The export control sits in the
+bottom-right corner, exactly where a lower third goes, so the beat described a
+button nobody could see. The take now scrolls the control up before clicking it.
+
+**`--actions` never ran.** The hook parsed the argument but the block that should
+have used it was inserted against stale anchor text, so three takes silently
+captured an untouched page. Every take is now checked for the visual change it
+claims, not just for playback.
+
+**An 84%-opaque band let page text bleed through.** At 1080p the words behind it
+were legible, which reads as a compositing fault. The band is now opaque.
+
+## And four original ones
 
 **A scripted click is not a user gesture.** `document.querySelector(...).click()`
 runs `play()`, but the AudioContext stays suspended, so the transport never

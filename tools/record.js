@@ -23,6 +23,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 async function main() {
   const args = process.argv.slice(2);
   const play = args.includes("--play");
+  const actionsArg = args.find((a) => a.startsWith("--actions="));
   const [url, outDir, secArg] = args.filter((a) => !a.startsWith("--"));
   if (!url || !outDir) {
     console.error("usage: node tools/record.js <url> <outDir> <seconds> [--play]");
@@ -201,6 +202,18 @@ async function main() {
 
   let clockStart = await clockAt();
   const ctxStart = await ctxTime();
+
+  if (actionsArg) {
+    // Choreography runs inside the page: keyboard presses, toggles, export.
+    // Fire-and-forget — the snippet schedules its own timers.
+    const body = fs.readFileSync(actionsArg.slice("--actions=".length), "utf8");
+    await S("Runtime.evaluate", {
+      expression: `(() => { ${body} })()`,
+      awaitPromise: false,
+      returnByValue: false,
+    });
+  }
+
   await S("Runtime.evaluate", {
     expression: `(() => {
       // Recording shim: without this the app pauses ~2 s in and the take shows
