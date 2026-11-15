@@ -201,7 +201,7 @@
     el.meters.innerHTML = "";
     el.rollEmpty.hidden = false;
 
-    document.title = `${rec.title} — The Earth Information Jukebox`;
+    document.title = `${rec.title} — Five Sides`;
 
     try {
       await analyseSide(rec);
@@ -750,7 +750,7 @@
       },
     },
     {
-      text: "The Earth Information Jukebox.",
+      text: "Five Sides. Five records, one planet.",
       wait: 4500,
     },
   ];

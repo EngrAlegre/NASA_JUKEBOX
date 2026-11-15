@@ -1,6 +1,6 @@
 {
   "url": "http://127.0.0.1:8177/",
-  "when": "2026-11-15T06:07:14.266Z",
+  "when": "2026-11-15T06:20:24.354Z",
   "passed": 18,
   "failed": 0,
   "results": [
@@ -8,7 +8,7 @@
       "group": "timing",
       "name": "first side playable",
       "ok": true,
-      "detail": "1158 ms from navigation"
+      "detail": "2700 ms from navigation"
     },
     {
       "group": "timing",
@@ -26,7 +26,7 @@
       "group": "a11y",
       "name": "exactly one h1",
       "ok": true,
-      "detail": "h1 The Earth Information Jukebox | h2 THE SHELF | h2 NOW PLAYING | h3 City Lights | h2 METHOD | h3 1 · FETCH | h3 2 · MEASURE | h3 3 · CALIBRATE"
+      "detail": "h1 Five Sides | h2 THE SHELF | h2 NOW PLAYING | h3 City Lights | h2 METHOD | h3 1 · FETCH | h3 2 · MEASURE | h3 3 · CALIBRATE"
     },
     {
       "group": "a11y",
@@ -120,22 +120,22 @@
     "main": 1,
     "contentinfo": 1,
     "status": 2,
-    "StaticText": 136,
+    "StaticText": 137,
     "heading": 12,
     "paragraph": 19,
     "navigation": 1,
     "region": 5,
-    "InlineTextBox": 167,
+    "InlineTextBox": 168,
     "button": 39,
     "list": 3,
     "group": 2,
     "generic": 9,
     "table": 1,
+    "emphasis": 3,
     "listitem": 29,
     "Legend": 1,
     "LabelText": 3,
     "image": 7,
-    "emphasis": 2,
     "code": 1,
     "caption": 1,
     "rowgroup": 1,
@@ -150,7 +150,7 @@
   "headings": [
     {
       "level": 1,
-      "text": "The Earth Information Jukebox"
+      "text": "Five Sides"
     },
     {
       "level": 2,

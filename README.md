@@ -1,9 +1,9 @@
-# The Earth Information Jukebox
+# Five Sides
 
 **Five NASA records and a live frequency, read pixel by pixel and played as music.**
 
 Built for the 2026 NASA Space Apps Challenge challenge *The Earth Information
-Jukebox*. Pick a visualization of our changing planet, press play, and the same
+Jukebox* — five sides of one planet, which is where the name comes from. Pick a visualization of our changing planet, press play, and the same
 data arrives through your eyes and your ears at the same moment.
 
 No build step. No dependencies. No framework.
@@ -16,7 +16,7 @@ Why a server at all: the app reads pixels out of a canvas, and browsers refuse t
 expose pixel data for images loaded over `file://`. One stdlib command fixes it.
 (If it is opened from disk, the app says exactly this instead of failing quietly.)
 
-**Deploy:** the repository is the site — no build step, no bundler, nothing to
+**Live:** <https://fivesides.site> — **Deploy:** the repository is the site — no build step, no bundler, nothing to
 compile. Push it to GitHub Pages (a workflow is included that tests before it
 publishes), `npx netlify deploy --prod --dir=.`, `npx vercel --prod`, or
 `docker build -t earth-jukebox . && docker run -p 8080:80 earth-jukebox`.

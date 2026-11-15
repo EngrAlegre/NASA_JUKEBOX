@@ -1,6 +1,6 @@
 {
-  "name": "The Earth Information Jukebox",
-  "short_name": "Earth Jukebox",
+  "name": "Five Sides",
+  "short_name": "Five Sides",
   "description": "NASA Earth Information Center frames, read pixel by pixel and played as music.",
   "start_url": "./",
   "scope": "./",

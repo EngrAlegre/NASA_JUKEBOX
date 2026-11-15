@@ -6,6 +6,9 @@ Everything a judge needs, in the order they usually need it.
 
 ## The pitch
 
+**Name:** Five Sides · **Live at:** <https://fivesides.site> · **Challenge:**
+*The Earth Information Jukebox*
+
 **The Earth Information Jukebox turns NASA's Earth Information Center visuals
 into playable records.** Every frame is measured pixel by pixel and becomes one
 bar of music, so the same data arrives through your eyes and your ears at the
