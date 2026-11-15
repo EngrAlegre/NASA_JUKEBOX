@@ -33,6 +33,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         ".mp3": "audio/mpeg",
         ".wav": "audio/wav",
         ".webp": "image/webp",
+        ".webmanifest": "application/manifest+json",
     }
 
     def end_headers(self):
