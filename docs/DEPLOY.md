@@ -22,9 +22,11 @@ locked due to a billing issue.` Nothing in the repository causes that. Two ways
 around it:
 
 **Pages without Actions.** Settings → Pages → **Deploy from a branch** → `main` /
-`/ (root)`. That path does not consume Actions and does not run the workflow. The
-`CNAME` file in this repository already claims `fivesides.site`, so the custom
-domain works as soon as DNS points at GitHub:
+`/ (root)`. That path does not consume Actions and does not run the workflow.
+Add the custom domain in Settings (GitHub writes the `CNAME` itself) — the
+repository deliberately does **not** ship one, because the live site is on
+Vercel and a stale `CNAME` would make Pages and Vercel fight over the domain.
+The A records for GitHub Pages are:
 
 | Type | Name | Value |
 |---|---|---|
@@ -39,6 +41,16 @@ about your GitHub billing: drag `dist/` onto <https://app.netlify.com/drop>, the
 add `fivesides.site` as a custom domain and follow the DNS records it prints.
 Netlify also serves the security headers and cache policy from `netlify.toml`,
 which Pages cannot do (the `<meta>` CSP still applies there).
+
+## Where this is actually deployed
+
+`https://www.fivesides.site` — **Vercel**, connected to
+`github.com/EngrAlegre/NASA_JUKEBOX`, so a push to `main` redeploys in about
+twenty seconds and `vercel.json` supplies the headers and cache policy.
+
+Known gap: the apex `fivesides.site` has no DNS record yet, so only `www`
+resolves. Add the domain in the Vercel project (it prints the A record to use for
+`@`, normally `76.76.21.21`); `vercel.json` already carries an apex → `www` 301.
 
 ## Pick a host
 
