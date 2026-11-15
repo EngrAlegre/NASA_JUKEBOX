@@ -1,0 +1,67 @@
+name: Deploy to GitHub Pages
+
+# The repository is already a working site, so deploying is just publishing it.
+# Enable once in Settings → Pages → Source: "GitHub Actions".
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Verify the engine and the page
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # The pure-function tests have no dependencies and need no browser.
+      - name: Engine tests
+        run: node tests/engine.test.js
+
+      - name: Serve and run the browser checks
+        run: |
+          python3 tools/serve.py --port 8177 --no-browser --quiet &
+          sleep 2
+          node tools/qa.js http://127.0.0.1:8177/
+
+      - name: Keep the QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-report
+          path: docs/qa-report.json
+          if-no-files-found: warn
+
+  deploy:
+    name: Publish
+    needs: verify
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/configure-pages@v5
+
+      - name: Upload the whole folder
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

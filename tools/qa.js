@@ -24,16 +24,11 @@ const { spawn } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 const os = require("os");
+const { findChrome, BASE_ARGS } = require("./chrome.js");
 
 const ROOT = path.resolve(__dirname, "..");
 const URL_APP = process.argv[2] || "http://127.0.0.1:8177/";
 
-const CHROME = [
-  path.join(os.homedir(), "AppData", "Local", "ms-playwright", "chromium-1234", "chrome-win64", "chrome.exe"),
-  path.join(os.homedir(), "AppData", "Local", "ms-playwright", "chromium-1223", "chrome-win64", "chrome.exe"),
-  path.join(os.homedir(), "AppData", "Local", "ms-playwright", "chromium-1217", "chrome-win64", "chrome.exe"),
-  "C:/Program Files/Google/Chrome/Application/chrome.exe",
-].find((p) => fs.existsSync(p));
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -55,9 +50,8 @@ async function main() {
   const downloads = path.join(os.tmpdir(), `ej-qa-dl-${port}`);
   fs.mkdirSync(downloads, { recursive: true });
 
-  const chrome = spawn(CHROME, [
-    "--headless=new", "--disable-gpu", "--no-first-run", "--no-default-browser-check",
-    "--autoplay-policy=no-user-gesture-required", "--mute-audio",
+  const chrome = spawn(findChrome(), [
+    ...BASE_ARGS,
     "--window-size=1600,1100",
     `--user-data-dir=${profile}`, `--remote-debugging-port=${port}`, "about:blank",
   ], { stdio: "ignore" });

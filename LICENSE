@@ -1,0 +1,42 @@
+MIT License
+
+Copyright (c) 2026 The Earth Information Jukebox contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+Note on imagery and data
+------------------------
+
+The frames in `data/records/` and the NASA-derived content rendered by the live
+tuner are products of NASA's Scientific Visualization Studio (SVS), the Earth
+Information Center content database, and NASA Global Imagery Browse Services
+(GIBS). NASA content is generally not subject to copyright in the United States
+and may be used without permission; please credit NASA and the individual
+visualizers named in each record's liner notes.
+
+This project uses no NASA logos, insignia, or the NASA "meatball" mark. Its
+name and visual identity are the work of the project, not NASA's, and this
+project is not endorsed by NASA. The Space Apps Challenge is NASA's programme;
+this repository is a participant submission to it.
+
+No third-party audio samples, fonts, or JavaScript libraries are included. All
+sound is synthesised by `src/sonify.js`, and the page loads no external
+resources apart from NASA GIBS imagery when the live tuner is used.

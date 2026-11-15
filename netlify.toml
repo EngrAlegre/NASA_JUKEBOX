@@ -1,0 +1,42 @@
+# Netlify. No build step: the repository is the site.
+#
+# Deploy: connect the repo, leave "build command" empty, publish directory "."
+# or run `npx netlify deploy --prod --dir=.`
+
+[build]
+  publish = "."
+
+# Applied to every response.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+    Permissions-Policy = "geolocation=(), camera=(), microphone=(), payment=(), usb=()"
+    Cross-Origin-Opener-Policy = "same-origin"
+    # Same policy as the <meta> tag in index.html; the header wins where both
+    # are present, and the meta keeps the protection on hosts without headers.
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: blob: https://gibs.earthdata.nasa.gov; connect-src 'self' https://gibs.earthdata.nasa.gov; media-src 'self' blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'self'"
+
+# Frames, covers and the catalog never change without a new filename.
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/audio/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# The app itself should always be revalidated, so a deploy is visible at once.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/src/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

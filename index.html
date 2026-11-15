@@ -6,11 +6,42 @@
 <title>The Earth Information Jukebox — NASA visualizations, played as sound</title>
 <meta name="description" content="An instrument that reads NASA Earth Information Center frames pixel by pixel and plays each one as a bar of music. Built for the 2026 NASA Space Apps Challenge.">
 <meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#06070a">
+<!-- Works on any host, including ones where response headers cannot be set
+     (GitHub Pages). The allow-list is exactly what this app touches: its own
+     files, NASA GIBS for the live tuner, and blob: URLs for the WAV download. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob: https://gibs.earthdata.nasa.gov; connect-src 'self' https://gibs.earthdata.nasa.gov; media-src 'self' blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; base-uri 'none'; form-action 'self'">
+<link rel="canonical" href="https://earth-jukebox.example/">
+
+<!-- Sharing -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Earth Information Jukebox">
+<meta property="og:title" content="The Earth Information Jukebox">
+<meta property="og:description" content="Five NASA records and a live frequency, read pixel by pixel and played as music. Built for the 2026 NASA Space Apps Challenge.">
+<meta property="og:image" content="og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The jukebox with a sea surface temperature map on the stage and its controls below.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Earth Information Jukebox">
+<meta name="twitter:description" content="NASA Earth Information Center frames, read pixel by pixel and played as music.">
+<meta name="twitter:image" content="og.png">
+
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%2306070a'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23ffb648' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%23ffb648'/%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.webmanifest">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <a class="skip-link" href="#deck">Skip to the jukebox</a>
+
+<noscript>
+  <p class="noscript">
+    This instrument measures pixels in a canvas and synthesises its sound with the
+    Web Audio API, so it needs JavaScript. If you would rather just listen, the
+    five sides are pre-rendered as audio files in <code>audio/</code>, and
+    <a href="docs/DESIGN.md">the design notes</a> describe what each measurement becomes.
+  </p>
+</noscript>
 
 <header class="topbar">
   <div class="brand">

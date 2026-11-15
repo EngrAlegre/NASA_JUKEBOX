@@ -1,6 +1,6 @@
 {
   "url": "http://127.0.0.1:8177/",
-  "when": "2026-11-15T03:51:44.512Z",
+  "when": "2026-11-15T04:58:20.126Z",
   "passed": 18,
   "failed": 0,
   "results": [
@@ -8,7 +8,7 @@
       "group": "timing",
       "name": "first side playable",
       "ok": true,
-      "detail": "839 ms from navigation"
+      "detail": "1329 ms from navigation"
     },
     {
       "group": "timing",
@@ -120,12 +120,12 @@
     "main": 1,
     "contentinfo": 1,
     "status": 2,
-    "StaticText": 132,
+    "StaticText": 133,
     "heading": 12,
     "paragraph": 18,
     "navigation": 1,
     "region": 5,
-    "InlineTextBox": 156,
+    "InlineTextBox": 157,
     "button": 36,
     "list": 3,
     "group": 2,

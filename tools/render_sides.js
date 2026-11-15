@@ -13,21 +13,14 @@ const { spawn } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 const os = require("os");
+const { findChrome, BASE_ARGS } = require("./chrome.js");
 
 const ROOT = path.resolve(__dirname, "..");
 const OUT = path.join(ROOT, "audio");
 const PORT = 8177;
 const BASE = `http://127.0.0.1:${PORT}`;
 
-const CHROME_CANDIDATES = [
-  path.join(os.homedir(), "AppData", "Local", "ms-playwright", "chromium-1234", "chrome-win64", "chrome.exe"),
-  path.join(os.homedir(), "AppData", "Local", "ms-playwright", "chromium-1223", "chrome-win64", "chrome.exe"),
-  path.join(os.homedir(), "AppData", "Local", "ms-playwright", "chromium-1217", "chrome-win64", "chrome.exe"),
-  "C:/Program Files/Google/Chrome/Application/chrome.exe",
-];
-
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-const findChrome = () => CHROME_CANDIDATES.find((p) => fs.existsSync(p)) || (() => { throw new Error("no chromium"); })();
 
 async function main() {
   const ids = process.argv.slice(2);
@@ -37,8 +30,7 @@ async function main() {
   const port = 9300 + Math.floor(Math.random() * 400);
   const profile = path.join(os.tmpdir(), `ej-render-${port}`);
   const chrome = spawn(findChrome(), [
-    "--headless=new", "--disable-gpu", "--mute-audio", "--no-first-run",
-    "--no-default-browser-check", "--autoplay-policy=no-user-gesture-required",
+    ...BASE_ARGS,
     `--user-data-dir=${profile}`, `--remote-debugging-port=${port}`, "about:blank",
   ], { stdio: "ignore" });
 

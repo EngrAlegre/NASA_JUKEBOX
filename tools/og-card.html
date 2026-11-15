@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>og card</title>
+<!-- Standalone page: rendered by tools/shoot.js at exactly 1200x630 into og.png. -->
+<style>
+  html, body { margin: 0; padding: 0; }
+  body {
+    width: 1200px; height: 630px; overflow: hidden;
+    background:
+      radial-gradient(900px 520px at 88% -10%, rgba(255,182,72,0.13), transparent 62%),
+      radial-gradient(700px 460px at 2% 108%, rgba(99,219,228,0.10), transparent 60%),
+      #06070a;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .grid {
+    position: absolute; inset: 0;
+    display: grid;
+    grid-template-columns: 470px 1fr;
+    align-items: center;
+    gap: 44px;
+    padding: 0 54px;
+  }
+
+  /* left column: the words */
+  .kicker {
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: #ffb648; font-weight: 600; margin: 0 0 18px;
+  }
+  .rule { width: 54px; height: 3px; background: #ffb648; border-radius: 2px; margin: 0 0 20px; }
+  h1 {
+    margin: 0 0 16px; font-size: 62px; line-height: 0.99; letter-spacing: -0.035em;
+    color: #f2f5fa; font-weight: 700;
+  }
+  h1 em { font-style: normal; color: #ffb648; }
+  .sub { margin: 0; font-size: 17.5px; line-height: 1.5; color: #aeb7c6; max-width: 34ch; }
+  .chips { display: flex; gap: 7px; margin-top: 26px; flex-wrap: wrap; }
+  .chip {
+    font-family: ui-monospace, Consolas, monospace; font-size: 10px; letter-spacing: 0.13em;
+    text-transform: uppercase; color: #cfd6e2; padding: 6px 10px;
+    border: 1px solid rgba(255,255,255,0.18); border-radius: 999px;
+  }
+
+  /* right column: the instrument, framed */
+  .frame {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.14);
+    box-shadow: 0 40px 90px rgba(0,0,0,0.65), 0 0 0 1px rgba(0,0,0,0.6);
+    background: #000;
+    aspect-ratio: 620 / 452;
+  }
+  .frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 21%; display: block; }
+  .frame::after {
+    content: "";
+    position: absolute; inset: 0;
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.55);
+    background: linear-gradient(180deg, transparent 62%, rgba(6,7,10,0.55) 100%);
+  }
+  .badge {
+    position: absolute; left: 16px; bottom: 14px; z-index: 2;
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: #ffb648;
+  }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div>
+      <p class="kicker">The Earth Information Jukebox</p>
+      <div class="rule"></div>
+      <h1>Sight in.<br><em>Music out.</em></h1>
+      <p class="sub">NASA Earth Information Center frames, read pixel by pixel and played as one bar of music each. Five records, and a live frequency.</p>
+      <div class="chips">
+        <span class="chip">NASA Space Apps 2026</span>
+        <span class="chip">EIC · SVS · GIBS</span>
+      </div>
+    </div>
+    <div class="frame">
+      <img src="../docs/screenshot.png" alt="">
+      <span class="badge">Ocean Heat · bar 1 of 18</span>
+    </div>
+  </div>
+</body>
+</html>

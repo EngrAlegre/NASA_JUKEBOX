@@ -740,6 +740,10 @@
         <ul>${datasets || "<li>See the source page for the dataset record.</li>"}</ul>
         <h4>Frames</h4>
         <p>${rec.frames.length} frames sampled evenly across the sequence, skipping title cards and fades. Timecodes: ${rec.frames.slice(0, 3).map((f) => f.label || `t+${f.t}s`).join(", ")} …</p>
+        ${rec.id.startsWith("live-") ? "" : `
+        <h4>Hear it without the app</h4>
+        <audio controls preload="none" src="audio/${rec.id}.mp3" aria-label="Pre-rendered audio for ${rec.title}"></audio>
+        <p class="audio-hint">Rendered by this same engine, through the same audio graph, by the Export button. If the folder was published without <code>audio/</code>, the player is simply empty.</p>`}
       </div>`;
   }
 

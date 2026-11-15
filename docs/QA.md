@@ -110,7 +110,34 @@ a progress state instead of pretending to be instant.
 `Log.entryAdded`. Clean across: initial load, playing, stepping, switching all
 five records, the live tuner fetching 18 GIBS frames, and export.
 
-## 5. What is **not** verified
+## 5. Deployment (`docs/DEPLOY.md`)
+
+Deployability was tested on the two paths that actually differ, not assumed:
+
+| Scenario | What was run | Result |
+|---|---|---|
+| **Subpath with a space** (the GitHub Pages `/repo-name/` case) | served the parent folder and loaded `/Nasa%20Jukebox/` | 5 records, 18 bars, no errors; covers, frames and `audio/canopy.mp3` all resolved under `/Nasa%20Jukebox/…` |
+| **Container** | `docker build -t earth-jukebox:test .` → `docker run -p 8099:80` | image **35.7 MB**; `/`, `src/app.js`, `data/records.js`, `data/records/ocean/f001.png`, `audio/co2.mp3`, `og.png`, `docs/QA.md` all **200**; a missing path returns **404** |
+| **Headers as configured** | `curl -sI` against the container | `Content-Security-Policy`, `X-Content-Type-Options` present; `Cache-Control: no-cache` on HTML, immutable on `/data` and `/audio` |
+| **CSP does not break the app** | full `tools/qa.js` run with the policy active | 18/18 passing, including the blob: WAV download and the GIBS live tuner |
+| **Container serves the real app** | headless load through port 8099 | 5 records, 18 bars, frames resolved, no console errors |
+
+Two bugs were found by doing this rather than writing it down:
+
+1. `.dockerignore` listed `nginx.conf`, which the Dockerfile copies — the build
+   would have failed. Caught by checking every `COPY` source against the ignore
+   patterns.
+2. `nginx.conf` originally set `Cache-Control` with `add_header` inside
+   `location` blocks, which silently drops every header inherited from the
+   `server` block — including the CSP. Rewritten to use `expires`, which does not
+   break inheritance.
+
+Not tested: Netlify, Vercel and Cloudflare Pages (no accounts), and the GitHub
+Actions workflow has not executed on GitHub's runners. The workflow's steps are
+the same commands verified locally, but that is a claim about equivalence, not a
+green check.
+
+## 6. What is **not** verified
 
 Stated plainly, because a verification document that only lists successes is
 marketing:
@@ -136,7 +163,7 @@ marketing:
   this environment. Every number above is real; whether it *sounds good* is
   still a human judgement.
 
-## 6. How to re-run everything
+## 7. How to re-run everything
 
 ```bash
 python tools/build_library.py      # rebuild frames from NASA (cached, no re-download)

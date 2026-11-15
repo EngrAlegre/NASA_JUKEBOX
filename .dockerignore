@@ -1,0 +1,14 @@
+.cache/
+.git/
+.github/
+.trash/
+tests/
+tools/
+audio/*.wav
+audio/render-report.json
+*.log
+__pycache__/
+Dockerfile
+.dockerignore
+netlify.toml
+vercel.json

@@ -13,19 +13,8 @@ const { spawn } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 const os = require("os");
+const { findChrome, BASE_ARGS } = require("./chrome.js");
 
-const CHROME_CANDIDATES = [
-  path.join(os.homedir(), "AppData", "Local", "ms-playwright", "chromium-1234", "chrome-win64", "chrome.exe"),
-  path.join(os.homedir(), "AppData", "Local", "ms-playwright", "chromium-1223", "chrome-win64", "chrome.exe"),
-  path.join(os.homedir(), "AppData", "Local", "ms-playwright", "chromium-1217", "chrome-win64", "chrome.exe"),
-  "C:/Program Files/Google/Chrome/Application/chrome.exe",
-  "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
-];
-
-function findChrome() {
-  for (const p of CHROME_CANDIDATES) if (fs.existsSync(p)) return p;
-  throw new Error("no chromium found");
-}
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -39,14 +28,9 @@ async function main() {
   const port = 9200 + Math.floor(Math.random() * 400);
   const profile = path.join(os.tmpdir(), `ej-shot-${port}`);
   const chrome = spawn(findChrome(), [
-    "--headless=new",
-    "--disable-gpu",
+    ...BASE_ARGS,
     "--hide-scrollbars",
-    "--no-first-run",
-    "--no-default-browser-check",
     "--force-device-scale-factor=1",
-    "--autoplay-policy=no-user-gesture-required",
-    "--mute-audio",
     `--window-size=${Number(process.env.SHOT_W || 1600)},${Number(process.env.SHOT_H || 1200)}`,
     `--user-data-dir=${profile}`,
     `--remote-debugging-port=${port}`,
@@ -119,7 +103,15 @@ async function main() {
     }
   }
 
-  const shot = await S("Page.captureScreenshot", { format: "png", captureBeyondViewport: false });
+  const shotParams = { format: "png", captureBeyondViewport: false };
+  // SHOT_CLIP=1200x630 captures an exact rectangle regardless of the window,
+  // which is what social cards need.
+  if (process.env.SHOT_CLIP) {
+    const [cw, ch] = process.env.SHOT_CLIP.split("x").map(Number);
+    shotParams.clip = { x: 0, y: 0, width: cw, height: ch, scale: 1 };
+    shotParams.captureBeyondViewport = true;
+  }
+  const shot = await S("Page.captureScreenshot", shotParams);
   fs.mkdirSync(path.dirname(path.resolve(out)), { recursive: true });
   fs.writeFileSync(out, Buffer.from(shot.data, "base64"));
 
