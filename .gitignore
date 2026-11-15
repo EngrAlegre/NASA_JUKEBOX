@@ -3,3 +3,5 @@
 audio/*.wav
 audio/render-report.json
 __pycache__/
+dist/
+dist.zip
