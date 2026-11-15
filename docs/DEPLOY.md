@@ -14,6 +14,32 @@ instrument. The app detects the mistake and says so.
 
 ---
 
+## If GitHub Actions are blocked
+
+A GitHub account with a **billing lock** will not start any workflow — the job
+fails before it runs, with `The job was not started because your account is
+locked due to a billing issue.` Nothing in the repository causes that. Two ways
+around it:
+
+**Pages without Actions.** Settings → Pages → **Deploy from a branch** → `main` /
+`/ (root)`. That path does not consume Actions and does not run the workflow. The
+`CNAME` file in this repository already claims `fivesides.site`, so the custom
+domain works as soon as DNS points at GitHub:
+
+| Type | Name | Value |
+|---|---|---|
+| A | `@` | `185.199.108.153` |
+| A | `@` | `185.199.109.153` |
+| A | `@` | `185.199.110.153` |
+| A | `@` | `185.199.111.153` |
+| CNAME | `www` | `engralegre.github.io` |
+
+**Or skip GitHub entirely.** Netlify takes the same folder and does not care
+about your GitHub billing: drag `dist/` onto <https://app.netlify.com/drop>, then
+add `fivesides.site` as a custom domain and follow the DNS records it prints.
+Netlify also serves the security headers and cache policy from `netlify.toml`,
+which Pages cannot do (the `<meta>` CSP still applies there).
+
 ## Pick a host
 
 | Host | Command | Notes |
