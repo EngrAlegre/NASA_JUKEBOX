@@ -665,7 +665,16 @@ const Sonify = (() => {
     };
 
     const bright = words(f.luma ?? 0, [[0.12, "nearly black"], [0.3, "dark"], [0.55, "mid-toned"], [0.78, "bright"], [2, "blazing"]]);
-    const colour = words(f.warmth ?? 0.5, [[0.25, "cool end of the palette"], [0.45, "cool-leaning"], [0.6, "mid-palette"], [0.8, "warm-leaning"], [2, "hot end of the palette"]]);
+    // Colour is described against the record's own legend. "Cool" and "warm"
+    // only make sense for a blue→red palette; NDVI runs brown→green and night
+    // lights run black→amber, so the ramp's own name is the honest word.
+    const ramp = rec.ramp || "value";
+    const colour = words(f.warmth ?? 0.5, [
+      [0.3, `low on the ${ramp} scale`],
+      [0.5, `lower-mid on the ${ramp} scale`],
+      [0.7, `upper-mid on the ${ramp} scale`],
+      [2, `high on the ${ramp} scale`],
+    ]);
     const texture = words(f.edge ?? 0, [[0.18, "very smooth"], [0.38, "gently textured"], [0.6, "busy"], [0.8, "visually chaotic"], [2, "churning"]]);
     const spread = words(f.colorfulness ?? 0, [[0.15, "almost monochrome"], [0.35, "subdued colour"], [0.55, "colourful"], [2, "saturated across the spectrum"]]);
     const where = (f.centroidX ?? 0.5) < 0.4 ? "in the west" : (f.centroidX ?? 0.5) > 0.6 ? "in the east" : "across the middle";

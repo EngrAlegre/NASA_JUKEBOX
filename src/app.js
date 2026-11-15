@@ -289,6 +289,13 @@
 
     S.loading = false;
     el.play.disabled = false;
+
+    // Small, honest instrumentation: how long until a side is playable. Read by
+    // tools/qa.js and useful in the console when tuning image sizes.
+    window.__jukebox = window.__jukebox || {};
+    window.__jukebox.lastReadyMs = Math.round(performance.now());
+    window.__jukebox.frames = n;
+    window.__jukebox.record = rec.id;
     el.stageCount.textContent = `frame 1 / ${n}`;
     el.narration.textContent = frames[0].desc.long;
     el.frameDesc.textContent = frames[0].desc.long;

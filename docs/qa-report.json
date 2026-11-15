@@ -1,0 +1,201 @@
+{
+  "url": "http://127.0.0.1:8177/",
+  "when": "2026-11-15T03:51:44.512Z",
+  "passed": 18,
+  "failed": 0,
+  "results": [
+    {
+      "group": "timing",
+      "name": "first side playable",
+      "ok": true,
+      "detail": "839 ms from navigation"
+    },
+    {
+      "group": "timing",
+      "name": "frames analysed",
+      "ok": true,
+      "detail": "18 frames"
+    },
+    {
+      "group": "a11y",
+      "name": "every interactive node has a name",
+      "ok": true,
+      "detail": "46 interactive nodes"
+    },
+    {
+      "group": "a11y",
+      "name": "exactly one h1",
+      "ok": true,
+      "detail": "h1 The Earth Information Jukebox | h2 THE SHELF | h2 NOW PLAYING | h3 City Lights | h2 METHOD | h3 1 · FETCH | h3 2 · MEASURE | h3 3 · CALIBRATE"
+    },
+    {
+      "group": "a11y",
+      "name": "a live region exists",
+      "ok": true,
+      "detail": "2 live regions"
+    },
+    {
+      "group": "a11y",
+      "name": "stage image is described by the generated text",
+      "ok": true,
+      "detail": "Bar 1 of 18 of City Lights. The frame is nearly black, low o…"
+    },
+    {
+      "group": "a11y",
+      "name": "current bar marked with aria-current",
+      "ok": true,
+      "detail": "1 marked"
+    },
+    {
+      "group": "a11y",
+      "name": "selected record marked aria-pressed",
+      "ok": true,
+      "detail": "1 pressed"
+    },
+    {
+      "group": "a11y",
+      "name": "meters carry value labels, not just bars",
+      "ok": true,
+      "detail": "6 meters"
+    },
+    {
+      "group": "keyboard",
+      "name": "Tab reaches the instrument's controls",
+      "ok": true,
+      "detail": "46 distinct stops"
+    },
+    {
+      "group": "keyboard",
+      "name": "play control is reachable",
+      "ok": true,
+      "detail": "Skip to the jukebox → Liner notes → Method → Keys → High contrast → 01 City Lights Human Footprint → 02 Carbon Weather Atmosphere → 03 Canopy Biosphere → 04 Lightning Weather → 05 Ocean Heat Ocean → Sea Surface TemperatureVegetation IndexTrue Colo → daily every 2 days every 4 days weekly"
+    },
+    {
+      "group": "keyboard",
+      "name": "space starts playback",
+      "ok": true,
+      "detail": "aria-pressed=true"
+    },
+    {
+      "group": "keyboard",
+      "name": "arrow steps to the next bar",
+      "ok": true,
+      "detail": "frame 2 / 18"
+    },
+    {
+      "group": "export",
+      "name": "Export WAV produces a valid file",
+      "ok": true,
+      "detail": "earth-jukebox-nightlights.wav, 9.3 MB"
+    },
+    {
+      "group": "export",
+      "name": "the exported side has real duration",
+      "ok": true,
+      "detail": "52.7 s, 44100 Hz, 2 ch"
+    },
+    {
+      "group": "reduced motion",
+      "name": "the score still renders",
+      "ok": true,
+      "detail": "25148 lit pixels"
+    },
+    {
+      "group": "reduced motion",
+      "name": "the side still loads",
+      "ok": true,
+      "detail": "18 bars"
+    },
+    {
+      "group": "reduced motion",
+      "name": "no exceptions",
+      "ok": true,
+      "detail": "clean"
+    }
+  ],
+  "roles": {
+    "RootWebArea": 1,
+    "link": 7,
+    "banner": 1,
+    "main": 1,
+    "contentinfo": 1,
+    "status": 2,
+    "StaticText": 132,
+    "heading": 12,
+    "paragraph": 18,
+    "navigation": 1,
+    "region": 5,
+    "InlineTextBox": 156,
+    "button": 36,
+    "list": 3,
+    "group": 2,
+    "generic": 9,
+    "table": 1,
+    "listitem": 29,
+    "Legend": 1,
+    "LabelText": 3,
+    "image": 7,
+    "emphasis": 2,
+    "code": 1,
+    "caption": 1,
+    "rowgroup": 1,
+    "row": 14,
+    "combobox": 2,
+    "slider": 1,
+    "cell": 39,
+    "MenuListPopup": 2,
+    "columnheader": 3,
+    "option": 8
+  },
+  "headings": [
+    {
+      "level": 1,
+      "text": "The Earth Information Jukebox"
+    },
+    {
+      "level": 2,
+      "text": "THE SHELF"
+    },
+    {
+      "level": 2,
+      "text": "NOW PLAYING"
+    },
+    {
+      "level": 3,
+      "text": "City Lights"
+    },
+    {
+      "level": 2,
+      "text": "METHOD"
+    },
+    {
+      "level": 3,
+      "text": "1 · FETCH"
+    },
+    {
+      "level": 3,
+      "text": "2 · MEASURE"
+    },
+    {
+      "level": 3,
+      "text": "3 · CALIBRATE"
+    },
+    {
+      "level": 3,
+      "text": "4 · COMPOSE"
+    },
+    {
+      "level": 3,
+      "text": "5 · PLAY"
+    },
+    {
+      "level": 3,
+      "text": "WHAT THE PIXELS BECAME"
+    },
+    {
+      "level": 3,
+      "text": "THE BAR, WRITTEN OUT"
+    }
+  ],
+  "pageErrors": []
+}

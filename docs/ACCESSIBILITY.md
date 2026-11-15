@@ -92,20 +92,32 @@ disguised as sound.
 
 ## What was tested, and what was not
 
-Verified in a real browser (headless Chromium over CDP, `tools/shoot.js`):
+Verified in a real browser (headless Chromium over the DevTools Protocol, no
+test framework) by `node tools/qa.js` — 18 checks, all passing:
 
-- Keyboard-only operation of records, transport, contrast, liner notes.
-- `aria-pressed` / `aria-current` state transitions during playback.
-- Live-region announcements on record change and bar change.
-- No console errors or unhandled exceptions during load, playback, record
-  switching, the live tuner, and the export path.
-- Layout at 400 × 860 and 1600 × 1200.
+- **Accessibility tree**: 45 of 45 interactive nodes carry an accessible name;
+  exactly one `h1`; two live regions; the stage canvas is labelled by the
+  generated description; the playing bar carries `aria-current`, the selected
+  record `aria-pressed`; all six meters expose their values as text.
+- **Keyboard**: 45 distinct Tab stops; space starts playback; arrows step bars;
+  contrast, liner notes and the keys dialog all reachable.
+- **Export**: the real button produces a valid 52.7 s, 44.1 kHz stereo WAV.
+- **Reduced motion**: reloaded with `prefers-reduced-motion: reduce` emulated, the
+  score still draws and the side still loads, with no exceptions.
+- **Timing**: first side playable 0.9–1.4 s after navigation.
+
+Separately, `node tests/engine.test.js` runs 59 assertions over analysis and
+composition, and layout was checked at 400 × 860 and 1600 × 1200.
 
 **Not verified, and stated as a limitation:** no test with an actual screen
-reader (NVDA/JAWS/VoiceOver) was run for this build, and no listening test with
-blind or low-vision participants was conducted. The ARIA is written against the
-pattern, not certified by users — which is the honest status of a weekend build,
-and the first thing to fix next.
+reader (NVDA/JAWS/VoiceOver) was run, and no listening test with blind or
+low-vision participants was conducted. The tree check proves names and roles
+exist and are wired; it does not prove the reading order is pleasant, or that
+announcements are not too chatty during a dense passage. The ARIA is written
+against the WAI-ARIA practices, not certified by users — which is the honest
+status of a weekend build, and the first thing to fix next.
+
+Full evidence, including the negative results: [`QA.md`](QA.md).
 
 ---
 

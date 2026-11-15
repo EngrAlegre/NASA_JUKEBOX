@@ -66,17 +66,22 @@ built from today's sea surface temperature.
 
 ## Evidence the thing works
 
-- `node tests/engine.test.js` — **59 assertions**, no dependencies. Covers
-  coverage/silence handling, the colour-bar axis, contour fidelity, determinism,
-  tempo smoothing, arrangement sections, and a check that **every note of every
-  side belongs to its mode**.
-- `tools/render_sides.js` — renders all five sides through a real browser's
-  `OfflineAudioContext`. Measured: **−16.9 to −19.1 LUFS**, peaks 0.76–0.96, no
-  clipping; 36–63 s per side, rendered in 12–26 s.
-- `tools/shoot.js` — headless Chromium over CDP: **no console errors or
-  exceptions** during load, playback, record switching, live tuning, and export.
-- The MP3s in `audio/` were produced by the app's own export path, so what ships
-  as audio is what the code does.
+Every claim below is reproducible with a command in the repository. Full detail,
+including what is **not** verified, is in [`docs/QA.md`](docs/QA.md).
+
+| What | How | Result |
+|---|---|---|
+| Analysis + composition | `node tests/engine.test.js` | **59 assertions**, 0 failures — including a check that every note of every side belongs to its mode |
+| Accessibility tree | `node tools/qa.js` | **45 of 45 interactive nodes named**, one `h1`, 2 live regions, `aria-current` on the playing bar, `aria-pressed` on the selected record, 6 meters with numeric labels |
+| Keyboard | `node tools/qa.js` | **45 distinct Tab stops**; space starts playback, arrows step bars |
+| Export button | `node tools/qa.js` (clicks the real button) | `earth-jukebox-nightlights.wav` — RIFF/WAVE, **52.7 s, 44.1 kHz stereo**, 9.3 MB |
+| Reduced motion | `node tools/qa.js` (emulated) | score still draws, side still loads, no exceptions |
+| Audio | `node tools/render_sides.js` | five sides at **−16.4 to −19.1 LUFS**, peaks 0.76–0.96, no clipping; 36–63 s rendered in 12–26 s |
+| Console | `tools/shoot.js` + `tools/qa.js` | **no exceptions** during load, playback, all five records, live tuning and export |
+| Time to play | `node tools/qa.js` | first side playable **0.9–1.4 s** after navigation |
+
+The MP3s in `audio/` were produced by the app's own export path, so what ships as
+audio is what the code does.
 
 ## How I would ask to be judged
 

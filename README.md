@@ -80,7 +80,7 @@ frame ──▶ measure ──▶ calibrate ──▶ compose ──▶ schedule
 | Measured in the frame | Heard in the bar | Why |
 |---|---|---|
 | Mean luminance | Register (octave) | A luminous frame sings high, a dark one answers low. |
-| Position along the colour bar | Scale degree | The legend becomes a pitch axis: cool end low, warm end high. |
+| Position along the colour bar | Scale degree | The legend becomes a pitch axis: its low end sits low in the scale, its high end sits high. |
 | Colourfulness | Chord size (3 or 4 notes) | Saturated frames hold four notes; monochrome frames hold three. |
 | Gradient texture | Subdivision, hat density | Busy texture earns sixteenths; smooth ocean holds long notes. |
 | Six horizontal bands | Voicing spread | Activity across the full height opens the chord; one latitude band keeps it closed. |
@@ -157,6 +157,7 @@ audio/                  the five sides as MP3 (rendered by the app itself)
 tests/engine.test.js    59 assertions over analysis and composition
 tools/build_library.py  rebuild the library from NASA SVS / GIBS
 tools/render_sides.js   render every side to WAV through a real browser
+tools/qa.js             accessibility tree, keyboard, export, reduced motion (18 checks)
 tools/shoot.js          headless screenshots + console-error checks
 tools/make_covers.py    pick each record's brightest frame as its sleeve
 ```
@@ -166,7 +167,10 @@ mapping can be exercised outside a browser:
 
 ```bash
 node tests/engine.test.js        # 59 checks, no dependencies
+node tools/qa.js                 # 18 browser checks -> docs/qa-report.json
 ```
+
+Full evidence, including what is *not* verified: [`docs/QA.md`](docs/QA.md).
 
 ## Rebuilding the library
 
@@ -195,8 +199,12 @@ catalog costs no bandwidth. FFmpeg and Pillow are needed to sample frames.
   another.
 - **Frames are sampled, not streamed.** Eighteen frames stand in for sequences of
   39–217 seconds; the piece is an interpretation of the arc, not a transcript.
-- **Only Chrome/Edge/Firefox on desktop and mobile were checked.** Safari was not
-  exercised for this build.
+- **No real screen reader, and no blind participants.** The accessibility tree is
+  verified programmatically (45 of 45 interactive nodes named, one `h1`, live
+  regions present, `aria-current` on the playing bar); whether the experience is
+  actually good for a screen-reader user is untested, and that is the honest gap.
+- **Safari, Firefox and mobile hardware were not exercised.** See
+  [`docs/QA.md`](docs/QA.md) §5 for the full list of what is and is not verified.
 
 ## Credits
 
