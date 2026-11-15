@@ -16,27 +16,28 @@ anyone watches the rest.
 
 ## The 30-second cut (the one you submit)
 
-77 words of voice. At a natural pace that is 30 seconds. Do not read it faster to
+72 spoken words. At a natural pace that is under 30 seconds. Do not read it faster to
 fit; cut a sentence instead (see *If you run long*).
 
 | Time | Beat | What is on screen | Voice |
 |---|---|---|---|
 | 0:00–0:03 | **Introduce yourself** | The app already playing *City Lights*. Cursor off frame. Map drifting, playhead sweeping. | "I'm [your name], from One Man vs All." |
-| 0:03–0:09 | **Lead us in** | Same shot, let the map move. The 2020 label ticks over. | "NASA's Earth Information Center makes the best pictures of our changing planet. Almost nobody can hear them." |
-| 0:09–0:13 | **Name your project** | Cut wide to the shelf — all five covers — then back to the stage. | "This is Five Sides — five NASA records, played pixel by pixel." |
-| 0:13–0:24 | **Describe your idea** | Meters pulsing in time with the music. At 0:18 press **D** and let the app speak its own description for two seconds. At 0:21 press **4** to jump straight to *Lightning*. | "Every scene is measured: brightness, colour, texture. That becomes the music. The legend's colour bar is the pitch — warm water sings high, and where nothing was measured, it stays silent." |
-| 0:24–0:30 | **Look into the future** | *Lightning* playing, percussion visible in the spectrum. Live tuner panel in frame, not loading. Hold on the stage, cursor still. | "Five records, and a live tuner for today's planet. You can look at the Earth — or you can listen to it." |
+| 0:03–0:09 | **Lead us in** | Same shot, let the map move. The 2020 label ticks over. | "NASA's Earth Information Center makes the best pictures of Earth. Nobody can hear them." |
+| 0:09–0:13 | **Name your project** | Cut wide to the shelf — all five covers — then back to the stage. | "Five Sides: five NASA records, played pixel by pixel." |
+| 0:13–0:24 | **Describe your idea** | Meters pulsing with the music. At 0:17 press **D** and let the app speak one description. At 0:21 press **4** to jump to *Lightning*. | "Every scene is measured — brightness, colour, texture — that becomes the music. The legend's colour bar sets the pitch: warm water sings high, empty sky stays silent." |
+| 0:24–0:30 | **Look into the future** | *Lightning* playing, percussion visible in the spectrum. Live tuner panel in frame, not loading. Hold on the stage, cursor still. | "Five records, a live tuner for today's Earth. Look at it — or listen to it." |
 
-**End card (one line of text, no voice):**
-`Five Sides · fivesides.site · NASA Earth Information Center data · NASA does not endorse this project`
+**72 spoken words.** At 150 words a minute that is 28.8 seconds — short enough to
+leave the pause after "silent" that makes the next line land. Read it at a normal
+pace; do not rush it.
 
 ### If you run long
 
 Cut in this order, and nothing else:
 
-1. "and where nothing was measured, it stays silent" (−8 words, −3 s)
+1. "warm water sings high, empty sky stays silent" (−8 words, −3 s)
 2. The shelf cutaway — stay on the stage through 0:09 (−2 s)
-3. "Almost nobody can hear them." (−5 words, −2 s)
+3. "Nobody can hear them." (−4 words, −1.5 s)
 
 Never cut the closing line. It is the only sentence that says what the thing is
 *for*.
