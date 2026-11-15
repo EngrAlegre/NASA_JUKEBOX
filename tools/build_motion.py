@@ -36,7 +36,6 @@ SOURCES = {
     "co2": "dyamondPointCloud_12-1-2023b_dyamond_co2_anim_globe_orbit_1080p30_h265.mp4",
     "canopy": "GEDI_global_w_colorbar_1080p60.mp4",
     "lightning": "iss_lightning_sphere_07312023.mp4",
-    "ocean": "perpetual_ocean2_CLOSE_097_SEA_ICE_ONLY_1080p30.mp4",
 }
 
 

@@ -1,6 +1,6 @@
 {
   "url": "http://127.0.0.1:8177/",
-  "when": "2026-11-15T07:27:53.355Z",
+  "when": "2026-11-15T07:55:16.604Z",
   "passed": 18,
   "failed": 0,
   "results": [
@@ -8,7 +8,7 @@
       "group": "timing",
       "name": "first side playable",
       "ok": true,
-      "detail": "804 ms from navigation"
+      "detail": "1134 ms from navigation"
     },
     {
       "group": "timing",
