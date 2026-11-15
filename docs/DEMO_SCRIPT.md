@@ -1,130 +1,147 @@
 # Demo video script
 
-Two minutes. Screen recording plus voice-over. No face needed, no cutaways.
+The challenge takes a **30-second video** (unlisted YouTube) *or* a 7-slide deck.
+The 30-second cut is the submission; the longer cut is for anyone who clicks
+through from the gallery.
 
-Record at 1600×900 or larger, with the browser at 100% zoom. Start the video
-**already on the app**, not on a title card — the first three seconds decide
-whether anyone watches the rest.
+Every version follows the five beats the submission form asks for: introduce
+yourself, lead us in, name your project, describe your idea, look into the
+future.
 
-**Recording it in one take:** open `http://127.0.0.1:8177/?tour=1`. The app runs a
-captioned 90-second walkthrough by itself — City Lights, the mapping, a spoken
-description, Lightning, Ocean Heat, a contrast flip — so you can capture the
-screen and record the voice-over against a fixed script instead of hoping your
-clicking lines up. Press any key or click *Skip tour* to take over.
-
----
-
-## 0:00 – 0:12 · Hook
-
-**Screen:** The app, idle on *City Lights*. Cursor moves to Play and clicks.
-The playhead sweeps; the piano roll fills.
-
-**Voice:**
-> This is a map of eleven years of city lights. It is also a piece of music. Every
-> frame of it was measured, and what you are hearing is what those measurements
-> became — at the same moment you see them.
-
-**On-screen text:** *The Earth Information Jukebox — NASA EIC frames, played as sound*
-
-## 0:12 – 0:35 · The mapping, made visible
-
-**Screen:** Slow, deliberate. Hover the meters as each one moves. Then point at
-the filmstrip thumbnails.
-
-**Voice:**
-> Twelve things get measured in every frame. Brightness picks the octave. Where
-> the average colour sits on the record's own colour bar — the legend the
-> scientists drew — picks the scale degree, so cool is low and warm is high.
-> Texture picks how fast the notes come. How much the planet changed since the
-> last frame picks the tempo.
->
-> The sixteen columns of the map become sixteen melodic steps, read left to
-> right, so the melody crosses the stereo field as it crosses the map.
-
-**Screen:** Press `D`. The description appears, and the voice synthesiser reads
-it. Let it speak for four or five seconds, then cut.
-
-**Voice:**
-> And every bar can say what it is, in words, from the same numbers.
-
-## 0:35 – 1:00 · Why it matters
-
-**Screen:** Turn the sound down. Click through liner notes; show the keyboard
-dialog; press `H` for high contrast.
-
-**Voice:**
-> The reason this exists is that Earth science is almost all pictures, and
-> pictures leave people out. So nothing here lives in only one channel. Every
-> control is on the keyboard. Every bar can be read aloud as it plays. The whole
-> thing works in high contrast, and it respects reduced motion.
->
-> A blind listener is not given a summary of the image. They are given the same
-> measurements, in the modality that carries them better.
-
-## 1:00 – 1:25 · Same instrument, different planet
-
-**Screen:** Arrow keys to *Lightning* — it is audibly different, percussive. Then
-*Canopy*, bright and open. Then *Ocean Heat*.
-
-**Voice:**
-> Nothing about the instrument is tuned to one record. Lightning is percussion
-> first, because a record made of transients should be. Canopy is bright and open,
-> because tall forest sits at the bright end of its colour bar. And Ocean Heat was
-> built this morning from the last eighteen days of sea surface temperature.
-
-**Screen:** Open the live tuner, choose Sea Surface Temperature, click Tune in,
-let the new side appear.
-
-**Voice:**
-> Point it at today's planet and it writes a new side.
-
-## 1:25 – 1:45 · The engineering
-
-**Screen:** Scroll to the Method section. Highlight the two rows marked *artistic*.
-Then a terminal: `node tests/engine.test.js` → 59 checks passed.
-
-**Voice:**
-> Two constraints keep eighteen bars of satellite data listenable: every pitch is
-> drawn from a fixed mode, so no measurement can produce a wrong note, and tempo
-> can only move seven BPM per bar. Both are enforced in code, and both are tested.
->
-> The composition is a pure function — frames in, bars out — and the same audio
-> graph renders live playback and the exported WAV, so the file is the
-> performance.
-
-## 1:45 – 2:00 · Close
-
-**Screen:** Click Export WAV; the progress state; the file appears. Then back to
-the stage, playing.
-
-**Voice:**
-> Four records from NASA's Earth Information Center, one from GIBS, and a live
-> tuner. No build step, no dependencies, no framework — one command serves the
-> folder and it runs.
->
-> The Earth Information Jukebox. You can look at the planet, or you can listen to
-> it.
-
-**On-screen text:** *github.com/… · open index.html*
+Record at 1600×900 or larger, browser at 100% zoom, bookmarks bar hidden. Start
+the video **already inside the app** — the first three seconds decide whether
+anyone watches the rest.
 
 ---
 
-## Cut-down versions
+## The 30-second cut (the one you submit)
 
-**30 seconds (for the challenge gallery):** Hook (0:00–0:08) → press `D` and let
-the description speak over the music (0:08–0:18) → arrow to Lightning, one
-sentence about the mapping (0:18–0:26) → close line (0:26–0:30).
+77 words of voice. At a natural pace that is 30 seconds. Do not read it faster to
+fit; cut a sentence instead (see *If you run long*).
 
-**15 seconds (social):** Start mid-piece on Lightning, cut to the meters moving,
-one caption: *"Every pixel measured. Every frame a bar. NASA's Earth Information
-Center, played back as music."*
+| Time | Beat | What is on screen | Voice |
+|---|---|---|---|
+| 0:00–0:03 | **Introduce yourself** | The app already playing *City Lights*. Cursor off frame. Map drifting, playhead sweeping. | "I'm [your name], from One Man vs All." |
+| 0:03–0:09 | **Lead us in** | Same shot, let the map move. The 2020 label ticks over. | "NASA's Earth Information Center makes the best pictures of our changing planet. Almost nobody can hear them." |
+| 0:09–0:13 | **Name your project** | Cut wide to the shelf — all five covers — then back to the stage. | "This is Five Sides — five NASA records, played pixel by pixel." |
+| 0:13–0:24 | **Describe your idea** | Meters pulsing in time with the music. At 0:18 press **D** and let the app speak its own description for two seconds. At 0:21 press **4** to jump straight to *Lightning*. | "Every scene is measured: brightness, colour, texture. That becomes the music. The legend's colour bar is the pitch — warm water sings high, and where nothing was measured, it stays silent." |
+| 0:24–0:30 | **Look into the future** | *Lightning* playing, percussion visible in the spectrum. Live tuner panel in frame, not loading. Hold on the stage, cursor still. | "Five records, and a live tuner for today's planet. You can look at the Earth — or you can listen to it." |
 
-## Production notes
+**End card (one line of text, no voice):**
+`Five Sides · fivesides.site · NASA Earth Information Center data · NASA does not endorse this project`
 
-- Use the **Lightning** side for any silent-autoplay context: it reads as music
-  even at low volume, and it is the shortest at 37 s.
-- Keep the meters in frame whenever music is playing — they are the argument.
-- Do not put music under the voice during 0:12–0:35; the mapping explanation
-  needs to be heard against silence, with only the app's own sound.
-- If recording a screen reader demo, use NVDA on Windows and slow the speech rate
-  to ~50%; the bar announcements are short but frequent.
+### If you run long
+
+Cut in this order, and nothing else:
+
+1. "and where nothing was measured, it stays silent" (−8 words, −3 s)
+2. The shelf cutaway — stay on the stage through 0:09 (−2 s)
+3. "Almost nobody can hear them." (−5 words, −2 s)
+
+Never cut the closing line. It is the only sentence that says what the thing is
+*for*.
+
+---
+
+## The 75-second cut (for judges who click through)
+
+Same opening three beats, then room to breathe.
+
+**0:00–0:12 · Hook** — *City Lights* playing. Let a full bar pass so the music
+establishes itself before you speak.
+> "This is eleven years of city lights. It is also a piece of music. Every scene
+> you can see moving has been measured, and what you are hearing is what those
+> measurements became."
+
+**0:12–0:28 · The mapping** — hover the meters as each one moves; point at the
+colour bar in the liner notes.
+> "Twelve things are measured in every frame. Brightness picks the octave.
+> Position along the record's own colour bar — the legend the scientists drew —
+> picks the scale degree. Texture decides how fast the notes come, and how much
+> the planet changed since the last scene sets the tempo."
+
+**0:28–0:38 · The picture moves with the music** — press `→` twice, slowly.
+> "Each bar plays its own scene, slowed to the length of the bar, so the maps
+> drift rather than jump. The strip under the stage is the sound itself, tapped
+> off the audio bus."
+
+**0:38–0:52 · Why it exists** — press **D**; let the synthesiser read one
+description. Turn the music down slightly under it.
+> "Every bar can say what it is, in words, from the same numbers. A blind
+> listener is not handed a summary of the image — they are handed the same
+> measurements, in the modality that carries them better."
+
+**0:52–1:04 · Same instrument, different planet** — press **3**, **4**, **5** to jump
+between records (↓ steps to the next one).
+> "Nothing here is tuned to one record. Lightning is percussion first, because a
+> record made of transients should be. Canopy is bright and open, because tall
+> forest sits at the bright end of its own scale."
+
+**1:04–1:15 · Close** — back to *Lightning* playing; leave the tuner panel
+visible.
+> "Five records from NASA's Earth Information Center, one live from GIBS, and a
+> tuner that writes a new side from today's planet. Look at the Earth — or listen
+> to it."
+
+---
+
+## The 7-slide deck (if you prefer no video)
+
+Seven slides, one idea each, no walls of text. Put the deck on the same unlisted
+link and submit that instead.
+
+1. **Title** — Five Sides. One line: *NASA Earth Information Center animations, played as music.* Your name, One Man vs All, Manila.
+2. **The problem** — one EIC still, full bleed. Caption: *This is how Earth science usually arrives. If you cannot see it, you do not get it.*
+3. **The idea** — the mapping table from the Method section, three rows only: measurement → musical parameter → why.
+4. **How it works** — the five-step pipeline as a single horizontal diagram: fetch, measure, calibrate, compose, play. One sentence per step.
+5. **It moves** — two frames of the same scene, four seconds apart, with the bar it produced. Caption: *Each bar plays the scene it was measured from.*
+6. **It is for people who cannot see it** — a screenshot of a spoken description next to the same bar's music. Caption: *The picture is optional. The description never is.*
+7. **Links** — fivesides.site, GitHub, and the honest line: *NASA does not endorse this project.*
+
+---
+
+## Recording checklist
+
+- **Window:** 1600×900 or 1920×1080, browser zoom 100%, bookmarks bar hidden,
+  one tab only. Close DevTools — a console in frame reads as a bug.
+- **Audio capture:** the music is Web Audio, so it goes through the system mixer.
+  In OBS use *Desktop Audio* (WASAPI output capture). Test with a 5-second
+  recording: if the music is missing, you captured the microphone only.
+- **Levels:** voice peaking around −12 dB, music sitting roughly 8–10 dB under
+  it. The app's own volume slider is the easiest place to set that — put it near
+  60% and record the voice separately if you can.
+- **One take is enough.** Do not stop for a wrong word; the voice is under 80
+  words and nobody is grading your delivery. Re-record only if the music did not
+  start.
+- **Do not press Tab** during recording — the skip link gets a focus ring and it
+  looks like a bug.
+- **Move the cursor deliberately**, stop before clicking, and park it away from
+  text before you stop talking.
+- **End on a clean frame** with the music still playing; trim the tail in the
+  editor rather than fading out.
+
+## Keys you will actually use
+
+| Key | Does |
+|---|---|
+| `Space` | play / pause |
+| `1`–`5` | jump to a record: 1 City Lights, 2 Carbon Weather, 3 Canopy, 4 Lightning, 5 Ocean Heat |
+| `↓` / `↑` | next / previous record |
+| `→` / `←` | next / previous **scene** inside the current record |
+| `D` | speak the current bar's description aloud |
+| `H` | high contrast |
+| `M` | mute |
+
+`→` moves between scenes, **not** between records. Use `4` when the script says
+"go to Lightning".
+
+## Facts to keep straight while talking
+
+- Five records, not four: City Lights, Carbon Weather, Canopy, Lightning, Ocean
+  Heat.
+- Every side is **eighteen scenes / eighteen bars**. The video shows eighteen,
+  never "dozens".
+- The music is generated live in the browser — there is no recorded soundtrack
+  playing underneath.
+- The live tuner is not a video: it fetches renders from NASA GIBS at play time
+  and may take a few seconds on a slow connection. Do not wait for it on camera.
