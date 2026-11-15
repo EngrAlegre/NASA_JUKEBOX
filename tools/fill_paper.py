@@ -96,7 +96,7 @@ set_text(paras[3],
 )
 
 # Project Demonstration link
-set_text(paras[8], "Link: [ TODO — paste the full unlisted YouTube URL, or the URL of the 7-slide deck ]")
+set_text(paras[8], "Link: [ TODO — paste the unlisted YouTube URL, or the URL of the 6-slide deck ]")
 
 # Project application link
 set_text(paras[12], "Link: https://www.fivesides.site/")
