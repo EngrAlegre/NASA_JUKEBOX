@@ -142,7 +142,39 @@ composition 1–3 ms per side, offline render 12–26 s for 36–63 s of audio. 
 WAV export therefore shows a progress state rather than pretending to be
 instant.
 
-## 8. What was deliberately not built
+## 8. Making it musical without ears in the room
+
+The riskiest part of this project is not technical. Generative music built from
+coarse image statistics very easily sounds like a synthesiser demonstration: a
+pad, a pulse, and some notes that happen to be in key. Three specific problems
+were fixed after the first render, none of which any test could have caught,
+because they are musical judgements rather than correctness bugs.
+
+**1. The harmony teleported.** Colour position chose the chord degree outright,
+so a frame whose average colour shifted fast could move the chord six scale steps
+between one bar and the next. Every individual chord was legal; the sequence was
+not music. The fix is the same shape as the tempo clamp: the colour bar now
+names a *target*, and the chord walks toward it one step per bar, two in a
+chorus. The data still decides where the harmony goes; the music decides how fast
+it gets there. A test asserts the step size.
+
+**2. The grid was machine-quantised.** Sixteen melody steps landed exactly on
+their subdivisions with identical velocities. That is what a spreadsheet would
+sound like. Notes now carry a few milliseconds of timing scatter and ±14% of
+velocity, seeded by the bar index so exports stay byte-identical.
+
+**3. The "inversion" was a no-op.** The chord was rotated across its own array —
+which changes only the order, and therefore only which pan position each pitch
+received. Pitches were identical between an "inverted" bar and a plain one. It is
+now a real inversion (the lowest tones lift an octave), and a test compares the
+two chords and fails if they match.
+
+What that leaves unverified is taste. The mix was measured — −16.4 to −19.1 LUFS,
+peaks 0.76–0.96, per-bar RMS arcs, log-scale spectrograms showing harmonic
+structure rather than noise — but nobody has listened critically in this
+environment. Measuring a mix is not hearing it.
+
+## 9. What was deliberately not built
 
 - **A "data fidelity vs musicality" slider.** It sounds generous and is actually
   an abdication: the interesting work is choosing the constraints, and exposing
@@ -155,7 +187,7 @@ instant.
   A server would have added nothing but a failure mode.
 - **Six records for the sake of six.** See §2.
 
-## 9. If there were another day
+## 10. If there were another day
 
 1. **Frame-level provenance.** Frames are sampled at known timecodes; storing the
    exact frame number from the SVS `frames/` directory would let anyone rebuild

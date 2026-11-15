@@ -22,6 +22,7 @@ window.RECORD_SETTINGS = {
     axis: [[8, 10, 22], [255, 214, 140]],
     ramp: "light intensity",
     unit: "radiance",
+    note: "Eleven years of light. The map is not showing you cities; it is showing you where we decided to stay up.",
     listen: "Listen for the year the map starts to glow harder than it used to. The pulse quickens with the change between years, not with the brightness.",
   },
   co2: {
@@ -33,6 +34,7 @@ window.RECORD_SETTINGS = {
     axis: [[60, 110, 200], [205, 60, 48]],
     ramp: "CO₂ concentration",
     unit: "ppm",
+    note: "A model atmosphere breathing. The air has no memory of us, and it is not a metaphor that it is getting thicker.",
     listen: "The point cloud thickens and thins as the camera orbits. Haze becomes chord size: more carbon, more notes held at once.",
   },
   canopy: {
@@ -44,6 +46,7 @@ window.RECORD_SETTINGS = {
     axis: [[120, 92, 62], [226, 242, 214]],
     ramp: "canopy height",
     unit: "metres",
+    note: "A laser in orbit, measuring the height of the forest. The tallest thing we have is also the quietest.",
     listen: "Tall forest sits at the bright end of the colour bar, so the tallest canopy sings highest. Sparse ground stays low and quiet.",
   },
   lightning: {
@@ -55,6 +58,7 @@ window.RECORD_SETTINGS = {
     axis: [[8, 10, 16], [250, 238, 196]],
     ramp: "flash density",
     unit: "flashes",
+    note: "Six years of the sky striking itself. Most of the map is empty, and the emptiness is the point.",
     listen: "Percussion is the data here. Every bright pixel cluster becomes a transient, so busy storm seasons sound busy.",
   },
   ocean: {
@@ -66,6 +70,7 @@ window.RECORD_SETTINGS = {
     axis: [[20, 60, 150], [225, 70, 45]],
     ramp: "sea surface temperature",
     unit: "°C",
+    note: "The ocean has absorbed most of the extra heat. This is what that looks like on an ordinary Tuesday.",
     listen: "Warm water is red on the legend, so the tropics sit high in the scale. Follow the melody from west to east to hear the Pacific.",
   },
 };

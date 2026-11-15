@@ -61,6 +61,7 @@
   <nav class="topnav" aria-label="About this project">
     <button type="button" class="ghost" data-open="liner">Liner notes</button>
     <button type="button" class="ghost" data-open="method">Method</button>
+    <button type="button" class="ghost" id="btn-tour">Tour</button>
     <button type="button" class="ghost" id="btn-keys" aria-haspopup="dialog">Keys</button>
     <button type="button" class="ghost" id="btn-contrast" aria-pressed="false">High contrast</button>
   </nav>
@@ -75,6 +76,10 @@
     <h2 id="shelf-heading" class="eyebrow">The shelf</h2>
     <ul class="shelf-list" id="shelf" role="list"></ul>
     <p class="shelf-hint" id="shelf-hint">Each record is one NASA visualization. Choose one, then play.</p>
+    <button type="button" class="concert" id="btn-concert" aria-pressed="false">
+      <span class="concert-dot" aria-hidden="true"></span>
+      <span class="concert-label">Play all five sides</span>
+    </button>
 
     <fieldset class="live-tuner" id="live-tuner">
       <legend class="eyebrow">Live tuner</legend>
@@ -119,6 +124,8 @@
         <span id="stage-section">intro</span>
         <span id="stage-tempo">—</span>
       </div>
+      <p class="tour-caption" id="tour-caption" role="status" hidden></p>
+      <button type="button" class="tour-skip" id="tour-skip" hidden>Skip tour</button>
       <p class="sr-only" id="frame-desc">Loading the first frame.</p>
     </div>
 
@@ -215,7 +222,7 @@
         <p>Space is black. A night-lights frame and an aerosol frame both average under ten percent luminance, so absolute readings would trap every record in the bottom octave. Each feature is therefore stretched between its own 10th and 90th percentile <em>within the side</em>, and the raw value is kept for display.</p>
 
         <h3>4 · Compose</h3>
-        <p>Measurements become one bar: a drone, a chord, a bass line, sixteen melodic steps and percussion. Tempo glides by at most seven BPM per bar. Every pitch is drawn from a fixed mode, so no measurement can produce a wrong note — extremes change register, density and timbre, never key.</p>
+        <p>Measurements become one bar: a drone, a chord, a bass line, sixteen melodic steps and percussion. Three constraints keep eighteen bars of data listenable: every pitch is drawn from a fixed mode, so no measurement can produce a wrong note; tempo moves at most seven BPM per bar; and the chord walks toward the degree the colour bar asks for one scale step at a time, so harmony is a progression rather than a series of jumps.</p>
 
         <h3>5 · Play</h3>
         <p>A Web Audio lookahead scheduler places events about 120&nbsp;ms ahead of the clock, so the pulse stays steady while the page animates. The export path renders the same graph through an <code>OfflineAudioContext</code>: the WAV is the performance, not an approximation of it.</p>
@@ -229,7 +236,7 @@
           </thead>
           <tbody>
             <tr><td>Mean luminance</td><td>Register (octave)</td><td>A luminous frame sings high, a dark one answers low.</td></tr>
-            <tr><td>Position along the colour bar</td><td>Scale degree</td><td>The legend becomes a pitch axis: its low end sits low in the scale, its high end sits high.</td></tr>
+            <tr><td>Position along the colour bar</td><td>Scale degree (target)</td><td>The legend becomes a pitch axis: low end low, high end high. The chord walks to the target one step per bar rather than leaping.</td></tr>
             <tr><td>Colourfulness</td><td>Chord size</td><td>Saturated frames hold four notes; monochrome frames hold three.</td></tr>
             <tr><td>Gradient texture</td><td>Subdivision, hat density</td><td>Busy texture earns sixteenths; smooth ocean holds long notes.</td></tr>
             <tr><td>Six horizontal bands of texture</td><td>Voicing spread</td><td>Activity across the whole height opens the chord; activity in one latitude band keeps it closed.</td></tr>

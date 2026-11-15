@@ -43,6 +43,12 @@ Scientific Visualization Studio gallery the EIC dashboards are built from). The
 fifth is rendered from **NASA GIBS**, the same WMS the EIC uses for near-real-time
 imagery — so one side is always current.
 
+**Play the album** runs all five sides back to back, announcing each one —
+the jukebox behaving like a jukebox. **Tour** (or `?tour=1`) runs a scripted
+90-second walkthrough on its own: captions, record changes, a spoken
+description, a contrast flip. Record it with any screen recorder, or leave it
+looping at a booth.
+
 **The live tuner** is the sixth slot: point the same engine at today's sea
 surface temperature, vegetation index, true colour or thermal anomalies, and it
 builds a brand-new side from whatever the planet did in the last eighteen
@@ -104,7 +110,7 @@ frame ──▶ measure ──▶ calibrate ──▶ compose ──▶ schedule
 The last two rows are composition rather than measurement and are marked as such
 everywhere they appear. Everything above them is a reading of the frame's pixels.
 
-### Two constraints that make it music rather than noise
+### Three constraints that make it music rather than noise
 
 - **Every pitch belongs to a fixed mode.** A measurement can choose any degree in
   the mode, never a note outside it — so extreme data cannot produce a wrong
@@ -113,6 +119,17 @@ everywhere they appear. Everything above them is a reading of the frame's pixels
   interval against the scale.
 - **Tempo glides at most 7 BPM per bar.** A jump reads as a mistake; a glide reads
   as the planet rearranging.
+- **The chord walks to its target, one scale step per bar** (two in a chorus).
+  The colour bar says where the harmony *should* be; the music decides how fast
+  it gets there. Without this the chord teleported wherever the average colour
+  happened to be that frame, which sounds like random harmony rather than a
+  progression — and there is a test asserting the step size now.
+
+Two smaller things that matter more than they look: pitch and velocity are
+scattered by a few milliseconds and a few percent, seeded by the bar index so two
+renders stay byte-identical; and the "inversion" is a real one (the lowest chord
+tones lift an octave). The earlier version rotated the array, which changed
+nothing but the pan positions — a bug the new inversion test now catches.
 
 The mapping is deterministic: the same frame always yields the same bar.
 
@@ -161,7 +178,7 @@ data/records.json       generated catalog: frames, credits, datasets
 data/records.js         the same catalog as a script, for offline use
 data/records/<id>/      18 frames per record + cover
 audio/                  the five sides as MP3 (rendered by the app itself)
-tests/engine.test.js    59 assertions over analysis and composition
+tests/engine.test.js    62 assertions over analysis and composition
 tools/build_library.py  rebuild the library from NASA SVS / GIBS
 tools/render_sides.js   render every side to WAV through a real browser
 tools/qa.js             accessibility tree, keyboard, export, reduced motion (18 checks)
@@ -169,6 +186,7 @@ tools/shoot.js          headless screenshots + console-error checks
 tools/make_covers.py    pick each record's brightest frame as its sleeve
 tools/serve.py          one-command static server (opens the browser)
 tools/set-url.js        rewrite canonical/og:image for the deployed address
+tools/checks/tour.sh    headless check of the guided tour
 tools/chrome.js         portable Chromium lookup + shared flags for the tools
 netlify.toml            headers, CSP, cache rules (also _headers, vercel.json, nginx.conf)
 Dockerfile              nginx image; only runtime files are copied in
@@ -179,7 +197,7 @@ Dockerfile              nginx image; only runtime files are copied in
 mapping can be exercised outside a browser:
 
 ```bash
-node tests/engine.test.js        # 59 checks, no dependencies
+node tests/engine.test.js        # 62 checks, no dependencies
 node tools/qa.js                 # 18 browser checks -> docs/qa-report.json
 ```
 

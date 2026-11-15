@@ -1,6 +1,6 @@
 {
   "url": "http://127.0.0.1:8177/",
-  "when": "2026-11-15T04:58:20.126Z",
+  "when": "2026-11-15T05:50:59.710Z",
   "passed": 18,
   "failed": 0,
   "results": [
@@ -8,7 +8,7 @@
       "group": "timing",
       "name": "first side playable",
       "ok": true,
-      "detail": "1329 ms from navigation"
+      "detail": "803 ms from navigation"
     },
     {
       "group": "timing",
@@ -20,7 +20,7 @@
       "group": "a11y",
       "name": "every interactive node has a name",
       "ok": true,
-      "detail": "46 interactive nodes"
+      "detail": "48 interactive nodes"
     },
     {
       "group": "a11y",
@@ -68,7 +68,7 @@
       "group": "keyboard",
       "name": "play control is reachable",
       "ok": true,
-      "detail": "Skip to the jukebox → Liner notes → Method → Keys → High contrast → 01 City Lights Human Footprint → 02 Carbon Weather Atmosphere → 03 Canopy Biosphere → 04 Lightning Weather → 05 Ocean Heat Ocean → Sea Surface TemperatureVegetation IndexTrue Colo → daily every 2 days every 4 days weekly"
+      "detail": "Skip to the jukebox → Liner notes → Method → Tour → Keys → High contrast → 01 City Lights Human Footprint → 02 Carbon Weather Atmosphere → 03 Canopy Biosphere → 04 Lightning Weather → 05 Ocean Heat Ocean → Play all five sides"
     },
     {
       "group": "keyboard",
@@ -98,7 +98,7 @@
       "group": "reduced motion",
       "name": "the score still renders",
       "ok": true,
-      "detail": "25148 lit pixels"
+      "detail": "25154 lit pixels"
     },
     {
       "group": "reduced motion",
@@ -120,13 +120,13 @@
     "main": 1,
     "contentinfo": 1,
     "status": 2,
-    "StaticText": 133,
+    "StaticText": 134,
     "heading": 12,
     "paragraph": 18,
     "navigation": 1,
     "region": 5,
-    "InlineTextBox": 157,
-    "button": 36,
+    "InlineTextBox": 165,
+    "button": 38,
     "list": 3,
     "group": 2,
     "generic": 9,

@@ -36,6 +36,7 @@
     minMidi: 40, maxMidi: 84,
     playing: false,
     loop: true,
+    concert: false,          // playing the whole album instead of one side,
     muted: false,
     contrast: false,
     autoDescribe: false,
@@ -82,6 +83,9 @@
     narrate: $("#btn-narrate"),
     exportBtn: $("#btn-export"),
     scoreBtn: $("#btn-score"),
+    concert: $("#btn-concert"),
+    caption: $("#tour-caption"),
+    skip: $("#tour-skip"),
     liveStatus: $("#live-status"),
     liveLayer: $("#live-layer"),
     liveStep: $("#live-step"),
@@ -572,12 +576,18 @@
     el.play.setAttribute("aria-label", "Play this side");
     if (S.tickId) window.clearInterval(S.tickId);
     S.tickId = null;
-    if (S.engine) S.engine.fadeOut(S.ctx.currentTime, 0.6);
+    if (S.engine) S.engine.fadeOut(S.ctx.currentTime, 0.8);
+
+    if (S.concert) {
+      nextInConcert();
+      return;
+    }
     announce("End of the side.");
   }
 
   function pause(opts = {}) {
     if (!S.playing && !opts.quiet) return;
+    if (!opts.quiet && S.concert) setConcert(false);
     S.playing = false;
     if (S.tickId) window.clearInterval(S.tickId);
     S.tickId = null;
@@ -591,6 +601,47 @@
   function togglePlay() {
     if (S.playing) pause();
     else play();
+  }
+
+  /* ---------------------------- concert mode ---------------------------
+   * A jukebox does not stop after one side. Concert mode plays the album in
+   * order, announcing each record, and only stops when told to. It is also how
+   * you demo the thing without touching it.
+   */
+  function setConcert(on, label) {
+    S.concert = on;
+    if (el.concert) {
+      el.concert.setAttribute("aria-pressed", String(on));
+      const l = el.concert.querySelector(".concert-label");
+      if (l) l.textContent = on ? "Stop the album" : "Play all five sides";
+    }
+    if (label) announce(label);
+  }
+
+  async function startConcert() {
+    setConcert(true);
+    S.loop = false;
+    el.loopBtn.setAttribute("aria-pressed", "false");
+    if (S.index !== 0) await selectRecord(0, { force: true });
+    play();
+    announce("Playing the album: five sides, in order.");
+  }
+
+  function stopConcert() {
+    if (!S.concert) return;
+    setConcert(false, "Album stopped.");
+  }
+
+  async function nextInConcert() {
+    const next = S.index + 1;
+    if (next >= RECORDS.length) {
+      setConcert(false, "That was the album. Five sides, one planet.");
+      return;
+    }
+    const rec = RECORDS[next];
+    announce(`Next side: ${rec.title}.`);
+    await selectRecord(next, { force: true });
+    play();
   }
 
   function jumpTo(frameIndex) {
@@ -634,6 +685,96 @@
     drawRoll(S.ctx ? S.ctx.currentTime : 0);
     if (S.autoDescribe) speak(fr.desc.long);
     if (S.playing) announce(fr.desc.long);
+  }
+
+
+  /* ------------------------------ guided tour ---------------------------
+   * A scripted run through the instrument: what it is, what it maps, and why
+   * accessibility is the point. Written to be recorded with a screen recorder
+   * with nobody touching the mouse, and to run unattended at a booth.
+   *
+   * Sequential rather than timestamped: each step awaits the previous one, so a
+   * slow machine stretches the tour instead of desynchronising it.
+   */
+  const sleep = (ms) => new Promise((resolve) => {
+    const started = Date.now();
+    (function tick() {
+      if (!S.tour) return resolve();                 // aborted mid-wait
+      if (Date.now() - started >= ms) return resolve();
+      window.setTimeout(tick, 80);
+    })();
+  });
+
+  const TOUR = [
+    {
+      text: "Five NASA records. Every frame is measured — and what you hear is what those measurements became.",
+      wait: 9000,
+      run: async () => { await selectRecord(0, { force: true }); play(); },
+    },
+    {
+      text: "Brightness picks the octave. Where the average colour sits on the record's own legend picks the note.",
+      wait: 9500,
+    },
+    {
+      text: "The sixteen columns of the map are sixteen melodic steps. Read left to right, heard left to right.",
+      wait: 9000,
+    },
+    {
+      text: "Every bar can describe itself, from those same numbers.",
+      wait: 7000,
+      run: async () => speak(S.frames[S.current] ? S.frames[S.current].desc.long : ""),
+    },
+    {
+      text: "Nothing here is tuned to one record. Lightning is percussion first, because a record made of flashes should be.",
+      wait: 11000,
+      run: async () => { await selectRecord(3, { force: true }); play(); },
+    },
+    {
+      text: "Ocean Heat was built this morning, from the last eighteen days of sea surface temperature.",
+      wait: 11000,
+      run: async () => { await selectRecord(4, { force: true }); play(); },
+    },
+    {
+      text: "Keyboard, screen reader, high contrast. Same measurements, a different way in.",
+      wait: 8000,
+      run: async () => {
+        document.body.classList.add("contrast");
+        await sleep(3200);
+        document.body.classList.remove("contrast");
+      },
+    },
+    {
+      text: "The Earth Information Jukebox.",
+      wait: 4500,
+    },
+  ];
+
+  async function runTour() {
+    if (S.tour) return;
+    S.tour = true;
+    if (el.caption) { el.caption.hidden = false; }
+    if (el.skip) el.skip.hidden = false;
+    setConcert(false);
+    S.loop = false;
+    el.loopBtn.setAttribute("aria-pressed", "false");
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+
+    for (const step of TOUR) {
+      if (!S.tour) break;
+      if (el.caption) el.caption.textContent = step.text;
+      if (step.run) await step.run();
+      await sleep(step.wait);
+    }
+    endTour();
+  }
+
+  function endTour(silent) {
+    if (!S.tour) return;
+    S.tour = false;
+    if (el.caption) { el.caption.hidden = true; el.caption.textContent = ""; }
+    if (el.skip) el.skip.hidden = true;
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+    if (!silent) announce("Tour ended. You are in control again.");
   }
 
   /* ------------------------------ the loop ----------------------------- */
@@ -716,6 +857,7 @@
     el.linerBody.innerHTML = `
       <div>
         <h3>${rec.title}</h3>
+        <p class="program-note">${rec.note || rec.blurb}</p>
         <p>${rec.blurb}</p>
         <h4>How to listen</h4>
         <p>${rec.listen}</p>
@@ -890,6 +1032,17 @@
       announce(S.loop ? "Looping this side." : "The side will stop at the end.");
     });
 
+    if (el.concert) {
+      el.concert.addEventListener("click", () => {
+        if (S.concert) {
+          stopConcert();
+          pause();
+        } else {
+          startConcert();
+        }
+      });
+    }
+
     el.volume.addEventListener("input", () => {
       S.masterVolume = Number(el.volume.value) / 100;
       if (S.engine && S.ctx) S.engine.master.gain.setTargetAtTime(S.muted ? 0.0001 : S.masterVolume * 0.9, S.ctx.currentTime, 0.05);
@@ -940,6 +1093,8 @@
     });
 
     $("#btn-keys").addEventListener("click", () => el.keysDialog.showModal());
+    $("#btn-tour").addEventListener("click", () => runTour());
+    if (el.skip) el.skip.addEventListener("click", () => { endTour(); pause(); });
 
     // record change on narrow layouts uses the same buttons; nothing extra.
 
@@ -948,6 +1103,16 @@
       if (["input", "select", "textarea"].includes(tag)) return;
       if (ev.metaKey || ev.ctrlKey || ev.altKey) return;
       if (el.keysDialog.open) return;
+
+      if (ev.key === "Escape" && S.tour) {
+        endTour();
+        pause();
+        return;
+      }
+      // Any deliberate input during the tour means the operator wants control.
+      if (S.tour && [" ", "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(ev.key)) {
+        endTour(true);
+      }
 
       switch (ev.key) {
         case " ":
@@ -1035,6 +1200,11 @@
     drawRoll(0);
     el.rollEmpty.hidden = true;
     el.volume.value = String(Math.round(S.masterVolume * 100));
+
+    // ?tour=1 runs the scripted tour on load: record it, or loop it at a booth.
+    if (params.get("tour") === "1") {
+      window.setTimeout(() => runTour(), 1400);
+    }
   }
 
   if (document.readyState === "loading") {

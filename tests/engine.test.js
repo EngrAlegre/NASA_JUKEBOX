@@ -178,6 +178,28 @@ function features(frames) {
   check("a rest still keeps time", bars[0].barDur > 0.4);
 }
 
+{
+  // Harmony must walk, not teleport: a frame whose colour jumps from the cool
+  // end to the warm end should pull the chord one step, not six.
+  const fs = features(Array.from({ length: 12 }, (_, i) => ({
+    luma: 0.5, edge: 0.4, warmth: i < 6 ? 0.0 : 1.0,
+  })));
+  const { bars } = Sonify.composeSide(fs, rec);
+  const jumps = bars.slice(1).map((b, i) => Math.abs(b.degree - bars[i].degree));
+  check("harmony glides instead of jumping", Math.max(...jumps) <= 2, `max step ${Math.max(...jumps)}`);
+  check("harmony still reaches the target", bars[11].degree >= 5, `degree ${bars[11].degree}`);
+}
+
+{
+  // A real inversion has to change pitches, not just which pan a note lands in.
+  const f = features([{ luma: 0.5, warmth: 0.5, edge: 0.4, colorfulness: 0.6 }])[0];
+  const plain = Sonify.buildBar(f, rec, {}, 1, 18);      // i % 3 !== 2, verse
+  const inverted = Sonify.buildBar(f, rec, {}, 2, 18);   // i % 3 === 2 -> inversion
+  const a = plain.chord.slice().sort((x, y) => x - y).join(",");
+  const b = inverted.chord.slice().sort((x, y) => x - y).join(",");
+  check("voicing inversion changes the chord pitches", a !== b, `${a} vs ${b}`);
+}
+
 /* ----------------------------- description ----------------------------- */
 
 {

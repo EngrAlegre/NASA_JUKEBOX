@@ -20,18 +20,22 @@ a new side from whatever the planet did in the last eighteen frames.
 1. **Run `python tools/serve.py`** and open the address it prints. The shelf is on
    the left. *(no build, no dependencies; the server exists only because browsers
    will not expose canvas pixels over `file://`)*
-2. **Click City Lights, press Play.** Watch the playhead sweep left to right
+2. **Or just click "Play all five sides"** and let it run — the album plays
+   through, side after side, announcing each record. *(If you would rather not
+   touch anything at all: `?tour=1` runs a captioned 90-second walkthrough by
+   itself.)*
+3. **Click City Lights, press Play.** Watch the playhead sweep left to right
    across the map while the piano roll fills in underneath: sixteen columns of
    the map, sixteen melodic steps.
-3. **Watch the meters.** Luminance → octave, colour-bar position → scale degree,
+4. **Watch the meters.** Luminance → octave, colour-bar position → scale degree,
    texture → subdivision, frame-to-frame change → tempo. They move as the music
    moves.
-4. **Press `D`.** The current bar is described aloud, from the same numbers.
-5. **Switch to Lightning** with the arrow keys. Same instrument, completely
+5. **Press `D`.** The current bar is described aloud, from the same numbers.
+6. **Switch to Lightning** with the arrow keys. Same instrument, completely
    different piece — percussion-first, because that record is made of transients.
-6. **Click "Export WAV".** The whole side renders to a file in ~15 s, through the
+7. **Click "Export WAV".** The whole side renders to a file in ~15 s, through the
    same audio graph you just heard.
-7. **Scroll to Method.** The mapping table, with the two artistic rules marked as
+8. **Scroll to Method.** The mapping table, with the two artistic rules marked as
    such.
 
 If there is time: **Tune in** on the live panel, and watch a brand-new side get
@@ -44,7 +48,7 @@ built from today's sea surface temperature.
 | Pair EIC visual frames with dynamic sonifications generated in real time | `src/app.js` schedules the side live; `src/sonify.js` composes it from measurements of the actual EIC frames in `data/records/` |
 | Let someone select a visualization and experience it with its soundscape | The shelf, the filmstrip, and the transport |
 | Translate visual data into sound: colour, brightness, shape, pixel density | Twelve measured features → twelve musical parameters, tabulated in the UI and in `README.md` |
-| Balance data interpretation with music that is pleasing | Fixed modes, tempo glide clamped at 7 BPM/bar, arrangement arc, voice leading via chord inversion |
+| Balance data interpretation with music that is pleasing | Fixed modes, tempo clamped to 7 BPM/bar, harmony that walks to its target one scale step at a time, arrangement arc, humanised timing and velocity, real chord inversions |
 | Accessibility as a core theme | Generated per-bar descriptions, speech synthesis, `aria-live` narration, full keyboard control, high-contrast theme, reduced motion — see `docs/ACCESSIBILITY.md` |
 | Document the process and the "why" | `docs/DESIGN.md`, including four rejected datasets and the bug that the narration caught |
 | Use NASA data and resources | Four records from the EIC content database (SVS), one from GIBS; live tuner on GIBS |
@@ -71,7 +75,7 @@ including what is **not** verified, is in [`docs/QA.md`](docs/QA.md).
 
 | What | How | Result |
 |---|---|---|
-| Analysis + composition | `node tests/engine.test.js` | **59 assertions**, 0 failures — including a check that every note of every side belongs to its mode |
+| Analysis + composition | `node tests/engine.test.js` | **62 assertions**, 0 failures — including a check that every note of every side belongs to its mode |
 | Accessibility tree | `node tools/qa.js` | **45 of 45 interactive nodes named**, one `h1`, 2 live regions, `aria-current` on the playing bar, `aria-pressed` on the selected record, 6 meters with numeric labels |
 | Keyboard | `node tools/qa.js` | **45 distinct Tab stops**; space starts playback, arrows step bars |
 | Export button | `node tools/qa.js` (clicks the real button) | `earth-jukebox-nightlights.wav` — RIFF/WAVE, **52.7 s, 44.1 kHz stereo**, 9.3 MB |

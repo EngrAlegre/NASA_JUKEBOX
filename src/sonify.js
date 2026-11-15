@@ -54,6 +54,20 @@ const Sonify = (() => {
     return table[((m % 12) + 12) % 12] + (Math.floor(m / 12) - 1);
   }
 
+  // Deterministic PRNG. Humanisation needs variation, but two renders of the
+  // same side must still be byte-identical — so the seed is the bar index, not
+  // Math.random().
+  function rng(seed) {
+    let a = seed >>> 0;
+    return () => {
+      a = (a + 0x6d2b79f5) >>> 0;
+      let t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
   const FLAT_MODES = new Set(["aeolian", "dorian", "phrygian", "minorPentatonic"]);
 
   /* ======================= 1. measurements -> bar ========================= */
@@ -84,15 +98,30 @@ const Sonify = (() => {
     state.register = state.register == null ? regTarget : lerp(state.register, regTarget, 0.38);
     const octave = Math.round((state.register - 0.45) * 2);     // -1 .. +1
 
-    // --- harmony: position along the record's colour bar = scale degree ---
-    const warmth = clamp01(f.warmth ?? 0.5);
-    const span = scale.length - 1;
-    const degree = Math.round(warmth * span);
-
     // --- arrangement arc: intro, body, chorus, outro ----------------------
+    // Declared before harmony, which needs to know whether this is a chorus bar.
     const p = n > 1 ? i / (n - 1) : 0.5;
     const arc = Math.sin(Math.PI * clamp01(p));                  // 0 at ends, 1 mid
     const section = p < 0.18 ? "intro" : p > 0.86 ? "outro" : p > 0.44 && p < 0.82 ? "chorus" : "verse";
+
+    // --- harmony: position along the record's colour bar = scale degree ---
+    //
+    // The colour bar picks a *target* degree; the chord walks toward it one step
+    // per bar instead of leaping. Without this the chord jumped wherever the
+    // average colour happened to be that frame, which reads as random harmony
+    // rather than as a progression. Same idea as the tempo clamp: the data
+    // chooses the destination, the music chooses the pace of getting there.
+    const warmth = clamp01(f.warmth ?? 0.5);
+    const span = scale.length - 1;
+    const targetDegree = Math.round(warmth * span);
+    if (state.degree == null) {
+      state.degree = targetDegree;
+    } else {
+      const maxStep = section === "chorus" ? 2 : 1;
+      const delta = targetDegree - state.degree;
+      state.degree += Math.sign(delta) * Math.min(Math.abs(delta), maxStep);
+    }
+    const degree = Math.max(0, Math.min(span, Math.round(state.degree)));
 
     const density = clamp01(f.edge ?? 0.3);
     const subdivision = density > 0.58 ? 16 : density > 0.3 ? 8 : 4;
@@ -136,9 +165,13 @@ const Sonify = (() => {
     const rowsAbs = f.rowsAbs && f.rowsAbs.length ? f.rowsAbs : [0.4];
     const vertical = rowsAbs.reduce((a, b) => a + b, 0) / rowsAbs.length;
     const inversion = (section === "chorus" ? 1 : 0) + (i % 3 === 2 ? 1 : 0);
-    const chordNotes = voicing.map((step, k) => scaleNote(rootMidi, scale, degree + step, octave));
+    const chordNotes = voicing.map((step) => scaleNote(rootMidi, scale, degree + step, octave));
     if (vertical > 0.45 && chordNotes.length > 2) chordNotes[0] -= 12;   // open voicing
-    const rotated = chordNotes.map((_, k) => chordNotes[(k + inversion) % chordNotes.length]);
+    // A real inversion: lift the lowest notes an octave, so the same chord in the
+    // same function changes register. Rotating the array — the earlier version —
+    // only shuffled which note got which pan position, which is not a voicing.
+    const lowestFirst = chordNotes.slice().sort((a, b) => a - b);
+    const rotated = lowestFirst.map((m, k) => (k < inversion % lowestFirst.length ? m + 12 : m));
     rotated.forEach((m, k) => {
       events.push({
         kind: "pad",
@@ -171,6 +204,7 @@ const Sonify = (() => {
     const stepDur = barDur / bands.length;
     let noteCount = 0;
     const topDegree = Math.round(degree + (1 - warmth) * 2 + 1);
+    const rand = rng(1013 + i * 7919);
     for (let b = 0; b < bands.length; b++) {
       const a = clamp01(bands[b]);
       const live = clamp01(bandsAbs[b] ?? 0);
@@ -181,9 +215,11 @@ const Sonify = (() => {
       events.push({
         kind: live > 0.62 ? "bell" : "pluck",
         midi,
-        at: b * stepDur,
+        // A few milliseconds of timing and velocity scatter: a machine-quantised
+        // grid sounds like a spreadsheet, and listeners hear that immediately.
+        at: Math.max(0, b * stepDur + (rand() - 0.5) * 0.016),
         dur: stepDur * (subdivision === 16 ? 0.85 : 1.7) + 0.06,
-        gain: 0.045 + 0.13 * live,
+        gain: (0.045 + 0.13 * live) * (0.86 + rand() * 0.28),
         pan: (b / (bands.length - 1)) * 1.7 - 0.85,
         cutoff: 900 + 6200 * clamp01(f.luma ?? 0.5) + 1300 * a,
         timbre,

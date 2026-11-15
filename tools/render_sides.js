@@ -72,7 +72,23 @@ async function main() {
   await S("Page.enable");
   await S("Runtime.enable");
   await S("Page.navigate", { url: `${BASE}/tools/render.html` });
-  await sleep(1200);
+
+  // Wait for the harness to define its entry point rather than assuming a fixed
+  // load time. A cold browser can take seconds, and a silent "renderRecord is
+  // not a function" is a miserable way to find that out.
+  let ready = false;
+  for (let i = 0; i < 120; i++) {
+    await sleep(250);
+    const probe = await S("Runtime.evaluate", { expression: "typeof window.renderRecord", returnByValue: true })
+      .catch(() => null);
+    if (probe && probe.result && probe.result.value === "function") { ready = true; break; }
+  }
+  if (!ready) {
+    console.error(`render harness never initialised at ${BASE}/tools/render.html — is the server running?`);
+    ws.close();
+    chrome.kill();
+    process.exit(1);
+  }
 
   fs.mkdirSync(OUT, { recursive: true });
   const report = [];
@@ -104,7 +120,15 @@ async function main() {
 
   fs.writeFileSync(path.join(OUT, "render-report.json"), JSON.stringify(report, null, 2));
   if (errors.length) console.error("page errors:", errors);
-  console.log(`\nwrote ${report.filter((r) => !r.error).length} files to audio/`);
+
+  const ok = report.filter((r) => !r.error);
+  console.log(`\nwrote ${ok.length} files to audio/`);
+  if (!ok.length) {
+    console.error("every side failed — is the page reachable at " + BASE + "?");
+    ws.close();
+    chrome.kill();
+    process.exit(1);
+  }
 
   ws.close();
   chrome.kill();

@@ -95,8 +95,14 @@ async function main() {
   }
 
   if (exprArg) {
+    let expr = exprArg;
+    // "@path" reads the expression from a file, which avoids fighting shell
+    // quoting for anything longer than a one-liner.
+    if (expr.startsWith("@")) {
+      expr = fs.readFileSync(expr.slice(1), "utf8");
+    }
     try {
-      const r = await S("Runtime.evaluate", { expression: exprArg, returnByValue: true, awaitPromise: true });
+      const r = await S("Runtime.evaluate", { expression: expr, returnByValue: true, awaitPromise: true });
       report.eval = r.result ? r.result.value : null;
     } catch (e) {
       report.eval = "EVAL ERROR: " + e.message;

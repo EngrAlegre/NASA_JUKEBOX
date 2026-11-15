@@ -228,6 +228,41 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 .shelf-hint { font-size: 11.5px; color: var(--ink-3); padding: 2px 8px 0; line-height: 1.45; }
 
+/* play the whole album */
+.concert {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin: 6px 8px 2px;
+  padding: 11px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--amber-line);
+  background: linear-gradient(100deg, rgba(255, 182, 72, 0.18), rgba(255, 182, 72, 0.05));
+  color: var(--ink);
+  font-size: 12.5px;
+  font-weight: 640;
+  letter-spacing: -0.005em;
+  transition: border-color 0.15s var(--ease), background 0.15s var(--ease), color 0.15s var(--ease), transform 0.1s var(--ease);
+}
+.concert:hover { border-color: var(--amber); background: linear-gradient(100deg, rgba(255, 182, 72, 0.26), rgba(255, 182, 72, 0.08)); }
+.concert:active { transform: translateY(1px); }
+.concert[aria-pressed="true"] { border-color: var(--amber); color: var(--amber); background: rgba(255, 182, 72, 0.14); }
+.concert-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 0 3px rgba(255, 182, 72, 0.16);
+  transition: background 0.15s var(--ease), box-shadow 0.15s var(--ease);
+}
+.concert[aria-pressed="true"] .concert-dot { background: var(--amber); box-shadow: 0 0 0 5px rgba(255, 182, 72, 0.24); }
+@media (prefers-reduced-motion: no-preference) {
+  .concert[aria-pressed="true"] .concert-dot { animation: pulse 1.8s ease-in-out infinite; }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(255, 182, 72, 0.10); }
+    50% { box-shadow: 0 0 0 6px rgba(255, 182, 72, 0.22); }
+  }
+}
+
 .live-tuner {
   margin: 8px 0 0;
   padding: 12px 13px 13px;
@@ -290,6 +325,46 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .stage-top { top: 0; background: linear-gradient(180deg, rgba(4, 5, 8, 0.88), transparent); }
 .stage-bottom { bottom: 0; background: linear-gradient(0deg, rgba(4, 5, 8, 0.88), transparent); }
 #stage-title { color: var(--amber); font-weight: 600; letter-spacing: 0.12em; }
+
+/* guided tour */
+.tour-caption {
+  position: absolute;
+  left: 50%;
+  bottom: 46px;
+  transform: translateX(-50%);
+  width: min(760px, calc(100% - 48px));
+  margin: 0;
+  padding: 15px 20px;
+  border-radius: 12px;
+  background: rgba(5, 6, 10, 0.86);
+  border: 1px solid rgba(255, 182, 72, 0.38);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+  color: #f2f5fa;
+  font-family: var(--serif);
+  font-size: clamp(15px, 1.6vw, 19px);
+  line-height: 1.45;
+  text-align: center;
+  backdrop-filter: blur(6px);
+  z-index: 3;
+}
+.tour-caption[hidden] { display: none; }
+.tour-skip {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 4;
+  padding: 6px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: rgba(5, 6, 10, 0.8);
+  color: var(--ink-2);
+  font-size: 11px;
+  font-family: var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.tour-skip:hover { color: var(--ink); border-color: var(--amber-line); }
+.tour-skip[hidden] { display: none; }
 #stage-tempo { color: var(--ink-2); }
 
 .filmstrip {
@@ -485,6 +560,15 @@ input[type="range"]::-moz-range-thumb {
 .liner-grid h3 { font-family: var(--serif); font-size: 18px; margin-bottom: 6px; }
 .liner-grid h4 { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; }
 .liner-grid p { font-size: 13.5px; color: var(--ink-2); margin-bottom: 12px; }
+.program-note {
+  font-family: var(--serif) !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  color: var(--ink) !important;
+  padding-left: 12px;
+  border-left: 2px solid var(--amber-line);
+  margin: 4px 0 12px !important;
+}
 .liner-grid ul { margin: 0; padding-left: 16px; font-size: 13px; color: var(--ink-2); display: grid; gap: 3px; }
 .liner-grid .credit-list { list-style: none; padding: 0; }
 .liner-grid .credit-list li { font-size: 12.5px; }

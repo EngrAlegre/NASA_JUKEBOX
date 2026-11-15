@@ -4,7 +4,7 @@ What was actually run, what it returned, and what remains untested. Every claim
 below is reproducible with a command in this repository.
 
 ```bash
-node tests/engine.test.js     # 59 assertions, pure functions, no browser
+node tests/engine.test.js     # 62 assertions, pure functions, no browser
 node tools/qa.js              # 18 checks in a real browser -> docs/qa-report.json
 node tools/render_sides.js    # renders all sides to WAV through the app's own engine
 ```
@@ -72,6 +72,14 @@ earth-jukebox-nightlights.wav — 9.3 MB, RIFF/WAVE, 52.7 s, 44100 Hz, 2 ch
 
 That is the same duration the command-line renderer produces (52.5 s), which
 confirms the in-page export and the batch renderer are running the same graph.
+
+### Album mode and guided tour
+
+| Check | Result |
+|---|---|
+| "Play all five sides" switches the album on | `aria-pressed=true`, label becomes *Stop the album*, loop switches off, playback starts at side 1 |
+| The tour runs unattended | `?tour=1` at 20 s: caption 2 visible, City Lights playing, frame 7/18; at 52 s: Ocean Heat playing, caption 6 visible |
+| The tour hands back control | any transport key or *Skip tour* ends it and leaves the instrument in the user's hands |
 
 ### Reduced motion
 

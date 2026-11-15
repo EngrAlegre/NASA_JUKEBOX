@@ -6,6 +6,12 @@ Record at 1600×900 or larger, with the browser at 100% zoom. Start the video
 **already on the app**, not on a title card — the first three seconds decide
 whether anyone watches the rest.
 
+**Recording it in one take:** open `http://127.0.0.1:8177/?tour=1`. The app runs a
+captioned 90-second walkthrough by itself — City Lights, the mapping, a spoken
+description, Lightning, Ocean Heat, a contrast flip — so you can capture the
+screen and record the voice-over against a fixed script instead of hoping your
+clicking lines up. Press any key or click *Skip tour* to take over.
+
 ---
 
 ## 0:00 – 0:12 · Hook

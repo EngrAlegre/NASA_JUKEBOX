@@ -106,7 +106,7 @@ test framework) by `node tools/qa.js` — 18 checks, all passing:
   score still draws and the side still loads, with no exceptions.
 - **Timing**: first side playable 0.9–1.4 s after navigation.
 
-Separately, `node tests/engine.test.js` runs 59 assertions over analysis and
+Separately, `node tests/engine.test.js` runs 62 assertions over analysis and
 composition, and layout was checked at 400 × 860 and 1600 × 1200.
 
 **Not verified, and stated as a limitation:** no test with an actual screen
