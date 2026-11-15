@@ -73,6 +73,18 @@ def clone_after(anchor_p, text):
     return p
 
 
+
+def insert_lead_after(anchor_p, label, text, style):
+    """A bold-labelled paragraph placed immediately after `anchor_p`."""
+    new = doc.add_paragraph(style=style)
+    r = new.add_run(label)
+    r.bold = True
+    new.add_run(text)
+    anchor_p._p.addnext(new._p)
+    from docx.text.paragraph import Paragraph
+    return Paragraph(new._p, anchor_p._parent)
+
+
 body_style = paras[58].style          # the template's own body style
 h1 = paras[0].style                   # Heading 1
 h2 = paras[1].style                   # Heading 2
@@ -105,18 +117,80 @@ set_text(paras[8],
 # Project application link
 set_text(paras[12], "Link: https://www.fivesides.site/")
 
-# Project details
+# Project details — the platform asks seven specific questions here, so the
+# field answers them in order rather than describing the project in general.
 set_text(paras[17],
     "Team One Man vs All (solo entry; Local Event: Manila, Philippines). Challenge: "
-    "The Earth Information Jukebox. Five Sides is a single-page web application — "
-    "HTML, CSS and plain JavaScript, no framework and no build step — that runs "
-    "entirely in the browser. It is neither a recorded film nor a set of stills: the "
-    "published NASA animation is decoded and drawn into the page frame by frame, and "
-    "the music is synthesised live from measurements of those same frames, so the "
-    "picture keeps moving inside the bar. The measured scenes ship with each record "
-    "so the side plays offline; the live tuner requests fresh frames from NASA GIBS. "
-    "Source and documentation: https://github.com/EngrAlegre/NASA_JUKEBOX"
+    "The Earth Information Jukebox."
 )
+
+p = insert_lead_after(paras[17], "What it does and how it works. ",
+    "Five Sides is a single-page web application, running entirely in the browser, "
+    "that turns NASA Earth Information Center animations into music. Eighteen scenes "
+    "are cut from each published animation and measured pixel by pixel: luminance, "
+    "saturation, a circular-mean hue, Hasler–Süsstrunk colourfulness, position along "
+    "the record's own published colour bar, gradient texture, and activity across "
+    "sixteen columns and six bands — roughly 230,000 samples per frame in about eight "
+    "milliseconds. Each scene becomes one bar. Brightness chooses the register, "
+    "position on the colour bar chooses the scale degree, texture sets note density, "
+    "and the change since the previous scene sets tempo. The browser decodes the "
+    "animation and draws it into the page while the Web Audio API synthesises the "
+    "music live, so the picture moves inside the bar rather than sitting still behind "
+    "it. Five records ship with the page — City Lights, Carbon Weather, Canopy, "
+    "Lightning, Ocean Heat — and a live tuner builds a new side from the last eighteen "
+    "days of NASA GIBS imagery.", body_style)
+
+p = insert_lead_after(p, "Benefits. ",
+    "Every bar can describe itself in words, generated from the same numbers that "
+    "produced the sound, and can be spoken aloud as it plays: the picture is optional, "
+    "the description is not. The instrument is fully keyboard-operable, honours "
+    "reduced motion, and carries a \u2018Show NASA frame\u2019 switch that removes every "
+    "overlay so the raw data can be checked at any moment. Because the mapping is "
+    "deterministic arithmetic rather than a model, the same scene always produces the "
+    "same music and any note can be traced back to a measurement; nothing here can be "
+    "hallucinated.", body_style)
+
+p = insert_lead_after(p, "Intended impact. ",
+    "Earth science is delivered almost entirely through sight, which excludes blind "
+    "and low-vision readers before the first chart is drawn. Five Sides gives that "
+    "audience the measurements in a modality that carries change over time better than "
+    "a still image, and gives sighted audiences a fast way to feel the shape of a "
+    "dataset — a classroom, a museum floor, or a newsroom meeting sea surface "
+    "temperature for the first time. Nothing in the instrument is specific to one "
+    "dataset, so the same approach can carry any EIC visual with a published colour "
+    "bar.", body_style)
+
+p = insert_lead_after(p, "Tools and technology. ",
+    "HTML, CSS and plain JavaScript — no framework, no bundler, no build step — served "
+    "as static files from Vercel behind a strict content security policy. Canvas 2D "
+    "for pixel measurement and drawing; Web Audio API for synthesis, with "
+    "OfflineAudioContext for WAV export. Python and FFmpeg cut scenes from the "
+    "published NASA renditions and write the catalogue; Node runs 62 unit checks, and a "
+    "headless Chromium driven over the DevTools Protocol runs 18 browser checks "
+    "covering the accessibility tree, keyboard operation, export and reduced motion. "
+    "Imagery comes from the NASA Scientific Visualization Studio (EIC Content "
+    "Database) and NASA GIBS. Source and documentation: "
+    "https://github.com/EngrAlegre/NASA_JUKEBOX", body_style)
+
+p = insert_lead_after(p, "How it is creative. ",
+    "The instrument treats the legend as the score. The colour bar the scientists drew "
+    "to explain temperature or canopy height becomes the pitch axis, so the "
+    "interface's own explanation is what a listener hears. Each bar is a scene rather "
+    "than a still — the animation is slowed to the length of the bar — which makes the "
+    "music a reading of movement rather than a description of a picture. And the piece "
+    "is willing to be silent: where the satellite recorded nothing, the bar plays a "
+    "rest instead of inventing sound.", body_style)
+
+insert_lead_after(p, "What was considered. ",
+    "Space is black, so an absolute brightness scale would trap every record in the "
+    "bottom octave; each feature is calibrated within its own side by 10th and 90th "
+    "percentile, with the raw value kept for display. Eighteen bars have to stay "
+    "listenable, so pitches come from a fixed mode, tempo moves at most seven BPM per "
+    "bar, and harmony walks one scale step per bar instead of leaping. Fidelity was "
+    "preferred to prettiness: two rows of the mapping table are marked artistic rather "
+    "than measured, the sample is described as eighteen scenes rather than the whole "
+    "sequence, and the repository states plainly what has not been verified — no blind "
+    "participant has tested it yet.", body_style)
 
 # NASA data: six sources, so the four template rows become six
 link_texts = [
