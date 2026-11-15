@@ -107,11 +107,14 @@ set_text(paras[12], "Link: https://www.fivesides.site/")
 # Project details
 set_text(paras[17],
     "Team One Man vs All (solo entry; Local Event: Manila, Philippines). Challenge: "
-    "The Earth Information Jukebox. Five Sides is a single static web application — "
+    "The Earth Information Jukebox. Five Sides is a single-page web application — "
     "HTML, CSS and plain JavaScript, no framework and no build step — that runs "
-    "entirely in the browser, reads its frames from a local image library, and can "
-    "also request live frames from NASA GIBS. Source and documentation: "
-    "https://github.com/EngrAlegre/NASA_JUKEBOX"
+    "entirely in the browser. It is neither a recorded film nor a set of stills: the "
+    "published NASA animation is decoded and drawn into the page frame by frame, and "
+    "the music is synthesised live from measurements of those same frames, so the "
+    "picture keeps moving inside the bar. The measured scenes ship with each record "
+    "so the side plays offline; the live tuner requests fresh frames from NASA GIBS. "
+    "Source and documentation: https://github.com/EngrAlegre/NASA_JUKEBOX"
 )
 
 # NASA data: six sources, so the four template rows become six
@@ -354,14 +357,19 @@ add(
 add("Tools and Technology", h2)
 add(
     "The application is deliberately dependency-free: HTML, CSS and plain JavaScript, "
-    "with no framework, no bundler and no build step, served as a folder of static "
-    "files. The analysis uses Canvas 2D; the synthesis uses the Web Audio API, with "
-    "OfflineAudioContext for export. Python handles the one offline task, sampling "
-    "frames from the published NASA renditions with FFmpeg and writing the catalogue. "
-    "Verification runs on Node: unit checks for the mapping, and a headless Chromium "
-    "driven over the DevTools Protocol for the browser checks, with no test framework "
-    "and no Playwright. Hosting is static, on Vercel, behind a content security policy "
-    "that allows exactly the app's own files and NASA GIBS."
+    "with no framework, no bundler and no build step — a folder of plain files that any "
+    "host can serve. Nothing about playback is pre-computed: the scene clips are decoded "
+    "by the browser's own video pipeline and drawn into a canvas, and every note is "
+    "synthesised at play time through the Web Audio API, with OfflineAudioContext for "
+    "export. The pre-rendered MP3s that ship beside the page are a convenience for "
+    "readers who cannot run JavaScript; the instrument itself does not play them. "
+    "Python handles the one offline task, cutting scenes from the published NASA "
+    "renditions with FFmpeg and writing the catalogue. Verification runs on Node: unit "
+    "checks for the mapping, and a headless Chromium driven over the DevTools Protocol "
+    "for the browser checks, with no test framework and no Playwright. Delivery is "
+    "static hosting on Vercel — static describes where the files live, not what the "
+    "page does — behind a content security policy that allows exactly the app's own "
+    "files and NASA GIBS."
 )
 
 add("Considerations", h2)
@@ -371,7 +379,7 @@ add_lead("Data fidelity. ",
     "and the exported score, and the score JSON carries every raw measurement so a "
     "researcher can check any note against any frame.")
 add_lead("Calibration is relative. ",
-    "A bar tells you where a frame sits within its own side. It is deliberately not a "
+    "A bar tells you where a scene sits within its own side. It is deliberately not a "
     "claim that one visualization is brighter than another, and the interface says so "
     "next to the meters.")
 add_lead("Musical judgement is a human judgement. ",
@@ -387,10 +395,10 @@ add_lead("Licensing and credit. ",
     "visualizers and datasets named from each published page. No NASA logo or insignia "
     "is used, and the page states that NASA does not endorse the project.")
 add_lead("Longevity. ",
-    "The five records are fixed frames, so the album will keep playing exactly as it "
-    "does today. The live tuner is the part with an expiry date: it depends on GIBS "
-    "staying open and CORS-enabled, and the page degrades to the local records if it "
-    "cannot reach them.")
+    "The five records are fixed scenes — the clips ship with the page — so the album "
+    "will keep playing exactly as it does today. The live tuner is the part with an "
+    "expiry date: it depends on GIBS staying open and CORS-enabled, and the page "
+    "degrades to the local records if it cannot reach them.")
 
 # ---------------- Demo script, in the template's five-beat shape
 add("Demo script:", h1)
