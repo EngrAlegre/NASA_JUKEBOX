@@ -96,7 +96,10 @@ set_text(paras[3],
 )
 
 # Project Demonstration link
-set_text(paras[8], "Link: [ TODO — paste the unlisted YouTube URL, or the URL of the 6-slide deck ]")
+set_text(paras[8],
+    "Link: six-slide deck submitted with this entry (Five-Sides-deck.pptx) — "
+    "https://github.com/EngrAlegre/NASA_JUKEBOX/blob/main/Five-Sides-deck.pptx"
+)
 
 # Project application link
 set_text(paras[12], "Link: https://www.fivesides.site/")
@@ -391,6 +394,10 @@ add_lead("Longevity. ",
 
 # ---------------- Demo script, in the template's five-beat shape
 add("Demo script:", h1)
+add("The demonstration submitted with this entry is a six-slide deck, "
+    "Five-Sides-deck.pptx, rather than a video. It carries one idea per slide — "
+    "the title, the problem, the mapping, how it works, the motion layer, and who "
+    "it is for — and this is the talk track that goes with it, one line per beat.")
 
 add("Introduce yourself", h2)
 add("Hello — I'm the one in One Man vs All, and this is Five Sides.")
